@@ -161,14 +161,48 @@ class GooglePhoto extends Component {
 }
 
 GooglePhoto.propTypes = {
+  /**
+   * Control if GooglePhoto is open or not.
+   */
   open: PropTypes.bool.isRequired,
-  src: PropTypes.any.isRequired,
-  // Index of source to display
+  /**
+   * An array containing valid images
+   */
+  src: PropTypes.arrayOf(
+		PropTypes.shape({
+      /**
+       * Url of the media
+       */
+      src: PropTypes.string.isRequired,
+      /**
+       * Height of the media
+       */
+      height: PropTypes.number.isRequired,
+      /**
+       * Width of the media
+       */
+      width: PropTypes.number.isRequired,
+		})
+	).isRequired,
+  /**
+   * Index of source to display
+   */
   srcIndex: PropTypes.number.isRequired,
-  // Should open on fullscreen mode, default `false`
+  /**
+   * Should open on fullscreen mode
+   */
   fullscreen: PropTypes.bool,
+  /**
+   * Function called when the previous image is requested
+   */
   onClickPrev: PropTypes.func.isRequired,
+  /**
+   * Function called when the next image is requested
+   */
   onClickNext: PropTypes.func.isRequired,
+  /**
+   * Function called when GooglePhoto is requested to be closed
+   */
   onClose: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
