@@ -143,7 +143,9 @@ class GooglePhoto extends Component {
               className={cx(classes.column, classes.leftColumn)}
               onClick={this.handleClickPrev}
             >
-              <PrevArrowButton />
+              <PrevArrowButton
+                className={cx(classes.arrowButton, classes.arrowButtonLeft)}
+              />
             </div>
           )}
           {src[srcIndex + 1] && (
@@ -151,7 +153,9 @@ class GooglePhoto extends Component {
               className={cx(classes.column, classes.rightColumn)}
               onClick={this.handleClickNext}
             >
-              <NextArrowButton />
+              <NextArrowButton
+                className={cx(classes.arrowButton, classes.arrowButtonRight)}
+              />
             </div>
           )}
         </div>
@@ -169,7 +173,7 @@ GooglePhoto.propTypes = {
    * An array containing valid images
    */
   src: PropTypes.arrayOf(
-		PropTypes.shape({
+    PropTypes.shape({
       /**
        * Url of the media
        */
@@ -182,8 +186,8 @@ GooglePhoto.propTypes = {
        * Width of the media
        */
       width: PropTypes.number.isRequired,
-		})
-	).isRequired,
+    })
+  ).isRequired,
   /**
    * Index of source to display
    */

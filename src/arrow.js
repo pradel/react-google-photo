@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles';
 
-export function PrevArrowButton() {
+export function PrevArrowButton({ className }) {
   return (
-    <div style={{ ...styles.arrowButton, ...styles.arrowButtonLeft }}>
+    <div className={className}>
       <svg
         style={styles.arrowButtonSvg}
         width="36px"
@@ -16,9 +16,9 @@ export function PrevArrowButton() {
   );
 }
 
-export function NextArrowButton() {
+export function NextArrowButton({ className }) {
   return (
-    <div style={{ ...styles.arrowButton, ...styles.arrowButtonRight }}>
+    <div className={className}>
       <svg
         style={styles.arrowButtonSvg}
         width="36px"
