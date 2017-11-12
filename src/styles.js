@@ -13,6 +13,11 @@ export default {
     top: 0,
     bottom: 0,
     cursor: 'pointer',
+    opacity: 0,
+    transition: 'opacity 200ms ease',
+    '&:hover': {
+      opacity: 1,
+    },
   },
   leftColumn: {
     left: 0,
@@ -48,9 +53,7 @@ export default {
     transition: 'opacity 500ms ease',
   },
   imageOpen: {
-    position: 'absolute',
     visibility: 'initial',
     opacity: 1,
-    transition: 'opacity 500ms ease',
-  }
+  },
 };

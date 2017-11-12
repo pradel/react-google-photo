@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Portal from 'react-minimalist-portal';
 import Transition from 'react-transition-group/Transition';
 import noScroll from 'no-scroll';
+import injectSheet from 'react-jss';
+import cx from 'classnames';
 import styles from './styles';
 import { PrevArrowButton, NextArrowButton } from './arrow';
 
@@ -11,13 +13,12 @@ const keycodes = {
   right: 39,
 };
 
-export default class GooglePhoto extends Component {
+class GooglePhoto extends Component {
   constructor(props) {
     super(props);
     this.state = {
       width: window.innerWidth,
       height: window.innerHeight,
-      isHoveringLeft: false,
     };
   }
 
@@ -56,13 +57,13 @@ export default class GooglePhoto extends Component {
   };
 
   render() {
-    const { open, src, srcIndex } = this.props;
+    const { open, src, srcIndex, classes } = this.props;
     const { width, height } = this.state;
     const image = src[srcIndex];
     const wrapperImageStyle = {
       position: 'absolute',
       overflow: 'hidden',
-      userSelect: 'none',      
+      userSelect: 'none',
     };
     let imageWidth = image.width;
     let imageHeight = image.height;
@@ -96,7 +97,7 @@ export default class GooglePhoto extends Component {
     }
     return (
       <Portal>
-        <div style={styles.overlay}>
+        <div className={classes.overlay}>
           <div style={wrapperImageStyle}>
             {src.map((source, index) => (
               <img
@@ -104,20 +105,20 @@ export default class GooglePhoto extends Component {
                 src={source.src}
                 width={wrapperImageStyle.width}
                 height={wrapperImageStyle.height}
-                style={
-                  index === srcIndex ? styles.imageOpen : styles.image
-                }
+                className={cx(classes.image, {
+                  [classes.imageOpen]: index === srcIndex,
+                })}
               />
             ))}
           </div>
           <div
-            style={{ ...styles.column, ...styles.leftColumn }}
+            className={cx(classes.column, classes.leftColumn)}
             onClick={this.handleClickPrev}
           >
             <PrevArrowButton />
           </div>
           <div
-            style={{ ...styles.column, ...styles.rightColumn }}
+            className={cx(classes.column, classes.rightColumn)}
             onClick={this.handleClickNext}
           >
             <NextArrowButton />
@@ -134,4 +135,7 @@ GooglePhoto.propTypes = {
   srcIndex: PropTypes.number.isRequired,
   onClickPrev: PropTypes.func.isRequired,
   onClickNext: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
+
+export default injectSheet(styles)(GooglePhoto);
