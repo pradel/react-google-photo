@@ -166,7 +166,7 @@ class GooglePhoto extends Component {
 
 GooglePhoto.propTypes = {
   /**
-   * Control if GooglePhoto is open or not.
+   * Control if GooglePhoto is open or not
    */
   open: PropTypes.bool.isRequired,
   /**
@@ -208,6 +208,9 @@ GooglePhoto.propTypes = {
    * Function called when GooglePhoto is requested to be closed
    */
   onClose: PropTypes.func.isRequired,
+  /**
+   * Object of classes to style the element
+   */
   classes: PropTypes.object.isRequired,
 };
 
