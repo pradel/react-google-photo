@@ -1,0 +1,26 @@
+{
+  "name": "react-google-photo",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\" \"docs/src/**/*.{js,css}\""
+  },
+  "repository": "https://github.com/pradel/react-google-photo.git",
+  "author": "Pradel Léo <pradel.leo@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "no-scroll": "^2.1.0",
+    "prop-types": "^15.6.0",
+    "react-minimalist-portal": "^2.1.1",
+    "react-transition-group": "^2.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.8.2",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0"
+  }
+}
