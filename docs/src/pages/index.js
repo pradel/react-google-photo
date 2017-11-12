@@ -44,6 +44,10 @@ class IndexPage extends React.Component {
     this.setState({ index: this.state.index + 1 });
   };
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
   handleClose = () => {
     this.setState({ open: false });
   };
@@ -52,6 +56,7 @@ class IndexPage extends React.Component {
     const { open, index } = this.state;
     return (
       <div>
+        <button onClick={this.handleOpen}>Open</button>
         <GooglePhoto
           open={open}
           src={images}
