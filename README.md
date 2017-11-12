@@ -1,6 +1,6 @@
 # react-google-photo
 
-![npm version](https://badge.fury.io/js/react-google-photo.svg)](https://badge.fury.io/js/react-google-photo)
+[![npm version](https://badge.fury.io/js/react-google-photo.svg)](https://badge.fury.io/js/react-google-photo)
 
 ## Installation
 
