@@ -18,8 +18,8 @@ class GooglePhoto extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: window ? window.innerWidth : 0,
+      height: window ? window.innerHeight: 0,
     };
   }
 
