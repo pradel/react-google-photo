@@ -9,6 +9,7 @@ import styles from './styles';
 import { PrevArrowButton, NextArrowButton } from './arrow';
 
 const keycodes = {
+  esc: 27,
   left: 37,
   right: 39,
 };
@@ -42,19 +43,29 @@ class GooglePhoto extends Component {
 
   handleKeydown = e => {
     if (e.keyCode === keycodes.left) {
-      this.props.onClickPrev();
+      this.handleClickPrev();
     } else if (e.keyCode === keycodes.right) {
-      this.props.onClickNext();
+      this.handleClickNext();
+    } else if (e.keyCode === keycodes.esc) {
+      this.handleClose();
     }
   };
 
   handleClickPrev = () => {
-    this.props.onClickPrev();
+    if (this.props.srcIndex !== 0) {
+      this.props.onClickPrev();      
+    }
   };
 
   handleClickNext = () => {
-    this.props.onClickNext();
+    if (this.props.src[this.props.srcIndex + 1]) {
+      this.props.onClickNext();      
+    }
   };
+
+  handleClose = () => {
+    this.props.onClose();
+  }
 
   render() {
     const { open, src, srcIndex, classes } = this.props;
@@ -95,6 +106,9 @@ class GooglePhoto extends Component {
       wrapperImageStyle.height = height;
       wrapperImageStyle.left = (width - imageWidth) / 2;
     }
+    if (!open) {
+      return null;
+    }
     return (
       <Portal>
         <div className={classes.overlay}>
@@ -111,18 +125,18 @@ class GooglePhoto extends Component {
               />
             ))}
           </div>
-          <div
+          {srcIndex !== 0 && <div
             className={cx(classes.column, classes.leftColumn)}
             onClick={this.handleClickPrev}
           >
             <PrevArrowButton />
-          </div>
-          <div
+          </div>}
+          {src[srcIndex + 1] && <div
             className={cx(classes.column, classes.rightColumn)}
             onClick={this.handleClickNext}
           >
             <NextArrowButton />
-          </div>
+          </div>}
         </div>
       </Portal>
     );
@@ -135,6 +149,7 @@ GooglePhoto.propTypes = {
   srcIndex: PropTypes.number.isRequired,
   onClickPrev: PropTypes.func.isRequired,
   onClickNext: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 

@@ -6,6 +6,7 @@ export default {
     right: 0,
     left: 0,
     backgroundColor: 'black',
+    overflow: 'hidden',
   },
   column: {
     position: 'absolute',
@@ -50,10 +51,12 @@ export default {
     position: 'absolute',
     visibility: 'hidden',
     opacity: 0,
-    transition: 'opacity 500ms ease',
+    transform: 'translateX(50px)',
+    transition: 'opacity 500ms ease, transform 500ms ease',
   },
   imageOpen: {
     visibility: 'initial',
     opacity: 1,
+    transform: 'translateX(0px)',
   },
 };
