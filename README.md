@@ -16,7 +16,7 @@ yarn add react-responsive-modal
 
 ## Options
 
-prop | type | default | description
+Property | Type | Default | Description
 ---- | :----: | :-------: | -----------
 **open*** | Boolean |  | Control if GooglePhoto is open or not
 **src*** | Array |  | An array containing valid images
