@@ -18,8 +18,8 @@ class GooglePhoto extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window ? window.innerWidth : 0,
-      height: window ? window.innerHeight: 0,
+      width: typeof window !== 'undefined' ? window.innerWidth : 0,
+      height: typeof window !== 'undefined' ? window.innerHeight : 0,
     };
   }
 
@@ -53,19 +53,19 @@ class GooglePhoto extends Component {
 
   handleClickPrev = () => {
     if (this.props.srcIndex !== 0) {
-      this.props.onClickPrev();      
+      this.props.onClickPrev();
     }
   };
 
   handleClickNext = () => {
     if (this.props.src[this.props.srcIndex + 1]) {
-      this.props.onClickNext();      
+      this.props.onClickNext();
     }
   };
 
   handleClose = () => {
     this.props.onClose();
-  }
+  };
 
   render() {
     const { open, src, srcIndex, classes } = this.props;
@@ -125,18 +125,22 @@ class GooglePhoto extends Component {
               />
             ))}
           </div>
-          {srcIndex !== 0 && <div
-            className={cx(classes.column, classes.leftColumn)}
-            onClick={this.handleClickPrev}
-          >
-            <PrevArrowButton />
-          </div>}
-          {src[srcIndex + 1] && <div
-            className={cx(classes.column, classes.rightColumn)}
-            onClick={this.handleClickNext}
-          >
-            <NextArrowButton />
-          </div>}
+          {srcIndex !== 0 && (
+            <div
+              className={cx(classes.column, classes.leftColumn)}
+              onClick={this.handleClickPrev}
+            >
+              <PrevArrowButton />
+            </div>
+          )}
+          {src[srcIndex + 1] && (
+            <div
+              className={cx(classes.column, classes.rightColumn)}
+              onClick={this.handleClickNext}
+            >
+              <NextArrowButton />
+            </div>
+          )}
         </div>
       </Portal>
     );
