@@ -18,7 +18,8 @@
     "prop-types": "^15.6.0",
     "react-jss": "^8.0.0",
     "react-minimalist-portal": "^2.1.1",
-    "react-transition-group": "^2.2.1"
+    "react-transition-group": "^2.2.1",
+    "screenfull": "^3.3.2"
   },
   "devDependencies": {
     "prettier": "^1.8.2",

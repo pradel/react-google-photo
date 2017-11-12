@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-minimalist-portal';
 import Transition from 'react-transition-group/Transition';
-import noScroll from 'no-scroll';
 import injectSheet from 'react-jss';
+import noScroll from 'no-scroll';
 import cx from 'classnames';
+import screenfull from 'screenfull';
 import styles from './styles';
 import { PrevArrowButton, NextArrowButton } from './arrow';
 
@@ -28,6 +29,18 @@ class GooglePhoto extends Component {
     window.addEventListener('resize', this.handleWindowResize);
     if (this.props.open) {
       noScroll.on();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.open && nextProps.open) {
+      noScroll.on();
+      if (this.props.fullscreen && screenfull.enabled) {
+        screenfull.request();
+      }
+    }
+    if (this.props.open && !nextProps.open) {
+      noScroll.off();
     }
   }
 
@@ -150,11 +163,18 @@ class GooglePhoto extends Component {
 GooglePhoto.propTypes = {
   open: PropTypes.bool.isRequired,
   src: PropTypes.any.isRequired,
+  // Index of source to display
   srcIndex: PropTypes.number.isRequired,
+  // Should open on fullscreen mode, default `false`
+  fullscreen: PropTypes.bool,
   onClickPrev: PropTypes.func.isRequired,
   onClickNext: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+};
+
+GooglePhoto.defaultProps = {
+  fullscreen: false,
 };
 
 export default injectSheet(styles)(GooglePhoto);
