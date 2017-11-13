@@ -4,6 +4,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
+    "lint": "eslint src docs/src",
+    "test": "yarn run lint && yarn run build",
     "prettier":
       "prettier --write \"src/**/*.js\" \"docs/src/**/*.{js,css,json}\"",
     "precommit": "lint-staged"
@@ -29,14 +31,36 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^5.0.0",
     "prettier": "^1.8.2",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "rules": {
+      "react/jsx-filename-extension": 0,
+      "import/no-extraneous-dependencies": 0,
+      "react/no-array-index-key": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "jsx-a11y/anchor-is-valid": 0
+    },
+    "env": {
+      "browser": true
+    }
   },
   "keywords": ["react", "google", "photo", "image", "lightbox"]
 }

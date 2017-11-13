@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-minimalist-portal';
-import Transition from 'react-transition-group/Transition';
+// import Transition from 'react-transition-group/Transition';
 import injectSheet from 'react-jss';
 import noScroll from 'no-scroll';
 import cx from 'classnames';
@@ -112,13 +112,13 @@ class GooglePhoto extends Component {
     // Adjust image ratio max with window size
     if (imageWidth > width) {
       const ratio = width / imageWidth;
-      imageHeight = imageHeight * ratio;
-      imageWidth = imageWidth * ratio;
+      imageHeight *= ratio;
+      imageWidth *= ratio;
     }
     if (imageHeight > height) {
       const ratio = height / imageHeight;
-      imageHeight = imageHeight * ratio;
-      imageWidth = imageWidth * ratio;
+      imageHeight *= ratio;
+      imageWidth *= ratio;
     }
 
     if (imageHeight > imageWidth || imageWidth < width) {
@@ -148,6 +148,7 @@ class GooglePhoto extends Component {
               <img
                 key={index}
                 src={source.src}
+                alt={source.alt}
                 width={wrapperImageStyle.width}
                 height={wrapperImageStyle.height}
                 className={cx(classes.image, {
@@ -243,7 +244,7 @@ GooglePhoto.propTypes = {
   /**
    * Object of classes to style the element
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 GooglePhoto.defaultProps = {

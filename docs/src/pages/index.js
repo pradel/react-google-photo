@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'gatsby-link';
 import GooglePhoto from '../../../src/index';
 
 // https://unsplash.com/collections/589374/textures

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// eslint-disable-next-line react/prop-types
 export function CloseArrow({ className, ...props }) {
   return (
     <div className={className} {...props}>
@@ -10,6 +11,7 @@ export function CloseArrow({ className, ...props }) {
   );
 }
 
+// eslint-disable-next-line react/prop-types
 export function PrevArrowButton({ className }) {
   return (
     <div className={className}>
@@ -20,6 +22,7 @@ export function PrevArrowButton({ className }) {
   );
 }
 
+// eslint-disable-next-line react/prop-types
 export function NextArrowButton({ className }) {
   return (
     <div className={className}>

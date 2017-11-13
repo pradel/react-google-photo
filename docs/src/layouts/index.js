@@ -58,7 +58,7 @@ const TemplateWrapper = ({ children }) => (
 );
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func, // eslint-disable-line
 };
 
 export default TemplateWrapper;
