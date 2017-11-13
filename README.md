@@ -2,7 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/react-google-photo.svg)](https://badge.fury.io/js/react-google-photo)
 
-
 ## Demo
 
 You can find a demo [here](https://react-google-photo.leopradel.com/).
