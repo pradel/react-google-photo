@@ -62,9 +62,9 @@ class GooglePhoto extends Component {
   };
 
   handleKeydown = e => {
-    if (e.keyCode === keycodes.left) {
+    if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
       this.handleClickPrev();
-    } else if (e.keyCode === keycodes.right) {
+    } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
       this.handleClickNext();
     } else if (e.keyCode === keycodes.esc && this.props.closeOnEsc) {
       this.handleClose();
@@ -226,6 +226,10 @@ GooglePhoto.propTypes = {
    */
   closeOnEsc: PropTypes.bool,
   /**
+   * Enable left and right arrow navigation
+   */
+  keyboardNavigation: PropTypes.bool,
+  /**
    * Should open on fullscreen mode
    */
   fullscreen: PropTypes.bool,
@@ -253,6 +257,7 @@ GooglePhoto.propTypes = {
 
 GooglePhoto.defaultProps = {
   closeOnEsc: true,
+  keyboardNavigation: true,
   fullscreen: false,
   mouseIdleTimeout: 5000,
 };
