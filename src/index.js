@@ -151,6 +151,10 @@ class GooglePhoto extends Component {
       wrapperImageStyle.left = (width - imageWidth) / 2;
     }
 
+    if (!showPortal) {
+      return false;
+    }
+
     return (
       <Portal>
         <Transition
@@ -159,70 +163,68 @@ class GooglePhoto extends Component {
           appear
           onExited={this.handleExited}
         >
-          {state =>
-            showPortal && (
-              <div
-                className={classes.overlay}
-                style={{
-                  ...transitionStyles.default,
-                  ...transitionStyles[state],
-                }}
-              >
-                <div style={wrapperImageStyle}>
-                  {src.map((source, index) => (
-                    <img
-                      key={index}
-                      src={source.src}
-                      alt={source.alt}
-                      width={wrapperImageStyle.width}
-                      height={wrapperImageStyle.height}
-                      className={cx(classes.image, {
-                        [classes.imageOpen]: index === srcIndex,
-                      })}
-                    />
-                  ))}
-                </div>
-                {srcIndex !== 0 && (
-                  <div
-                    className={cx(classes.column, classes.leftColumn)}
-                    onClick={this.handleClickPrev}
-                  >
-                    <PrevArrowButton
-                      className={cx(
-                        classes.arrowButton,
-                        classes.arrowButtonLeft,
-                        {
-                          [classes.arrowButtonHide]: mouseIdle,
-                        }
-                      )}
-                    />
-                  </div>
-                )}
-                {src[srcIndex + 1] && (
-                  <div
-                    className={cx(classes.column, classes.rightColumn)}
-                    onClick={this.handleClickNext}
-                  >
-                    <NextArrowButton
-                      className={cx(
-                        classes.arrowButton,
-                        classes.arrowButtonRight,
-                        {
-                          [classes.arrowButtonHide]: mouseIdle,
-                        }
-                      )}
-                    />
-                  </div>
-                )}
-                <CloseArrow
-                  className={cx(classes.arrowButtonReturn, {
-                    [classes.arrowButtonHide]: mouseIdle,
-                  })}
-                  onClick={this.handleClose}
-                />
+          {state => (
+            <div
+              className={classes.overlay}
+              style={{
+                ...transitionStyles.default,
+                ...transitionStyles[state],
+              }}
+            >
+              <div style={wrapperImageStyle}>
+                {src.map((source, index) => (
+                  <img
+                    key={index}
+                    src={source.src}
+                    alt={source.alt}
+                    width={wrapperImageStyle.width}
+                    height={wrapperImageStyle.height}
+                    className={cx(classes.image, {
+                      [classes.imageOpen]: index === srcIndex,
+                    })}
+                  />
+                ))}
               </div>
-            )
-          }
+              {srcIndex !== 0 && (
+                <div
+                  className={cx(classes.column, classes.leftColumn)}
+                  onClick={this.handleClickPrev}
+                >
+                  <PrevArrowButton
+                    className={cx(
+                      classes.arrowButton,
+                      classes.arrowButtonLeft,
+                      {
+                        [classes.arrowButtonHide]: mouseIdle,
+                      }
+                    )}
+                  />
+                </div>
+              )}
+              {src[srcIndex + 1] && (
+                <div
+                  className={cx(classes.column, classes.rightColumn)}
+                  onClick={this.handleClickNext}
+                >
+                  <NextArrowButton
+                    className={cx(
+                      classes.arrowButton,
+                      classes.arrowButtonRight,
+                      {
+                        [classes.arrowButtonHide]: mouseIdle,
+                      }
+                    )}
+                  />
+                </div>
+              )}
+              <CloseArrow
+                className={cx(classes.arrowButtonReturn, {
+                  [classes.arrowButtonHide]: mouseIdle,
+                })}
+                onClick={this.handleClose}
+              />
+            </div>
+          )}
         </Transition>
       </Portal>
     );
