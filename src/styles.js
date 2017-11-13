@@ -14,8 +14,8 @@ export default {
     top: 0,
     bottom: 0,
     cursor: 'pointer',
-    opacity: 0,
     transition: 'opacity 200ms ease',
+    opacity: 0,
     '&:hover': {
       opacity: 1,
     },
@@ -36,6 +36,8 @@ export default {
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
+    transition: 'opacity 200ms ease',
+    opacity: 1,
   },
   arrowButton: {
     backgroundColor: 'rgba(66,66,66,0.54)',
@@ -48,6 +50,11 @@ export default {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    transition: 'opacity 200ms ease',
+    opacity: 1,
+  },
+  arrowButtonHide: {
+    opacity: 0,
   },
   arrowButtonLeft: {
     left: 28,

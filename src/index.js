@@ -21,12 +21,16 @@ class GooglePhoto extends Component {
     this.state = {
       width: typeof window !== 'undefined' ? window.innerWidth : 0,
       height: typeof window !== 'undefined' ? window.innerHeight : 0,
+      mouseIdle: false,
     };
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydown);
     window.addEventListener('resize', this.handleWindowResize);
+    document
+      .querySelector('*')
+      .addEventListener('mousemove', this.handleMousemove);
     if (this.props.open) {
       noScroll.on();
     }
@@ -47,6 +51,9 @@ class GooglePhoto extends Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeydown);
     window.removeEventListener('resize', this.handleWindowResize);
+    document
+      .querySelector('*')
+      .removeEventListener('mousemove', this.handleMousemove);
     noScroll.off();
   }
 
@@ -62,6 +69,17 @@ class GooglePhoto extends Component {
     } else if (e.keyCode === keycodes.esc) {
       this.handleClose();
     }
+  };
+
+  handleMousemove = () => {
+    // Hide the actions buttons when move do not move for x seconds
+    clearTimeout(this.timeoutMouseIdle);
+    if (this.state.mouseIdle === true) {
+      this.setState({ mouseIdle: false });
+    }
+    this.timeoutMouseIdle = setTimeout(() => {
+      this.setState({ mouseIdle: true });
+    }, this.props.mouseIdleTimeout);
   };
 
   handleClickPrev = () => {
@@ -82,7 +100,7 @@ class GooglePhoto extends Component {
 
   render() {
     const { open, src, srcIndex, classes } = this.props;
-    const { width, height } = this.state;
+    const { width, height, mouseIdle } = this.state;
     const image = src[srcIndex];
     const wrapperImageStyle = {
       position: 'absolute',
@@ -144,7 +162,9 @@ class GooglePhoto extends Component {
               onClick={this.handleClickPrev}
             >
               <PrevArrowButton
-                className={cx(classes.arrowButton, classes.arrowButtonLeft)}
+                className={cx(classes.arrowButton, classes.arrowButtonLeft, {
+                  [classes.arrowButtonHide]: mouseIdle,
+                })}
               />
             </div>
           )}
@@ -154,12 +174,16 @@ class GooglePhoto extends Component {
               onClick={this.handleClickNext}
             >
               <NextArrowButton
-                className={cx(classes.arrowButton, classes.arrowButtonRight)}
+                className={cx(classes.arrowButton, classes.arrowButtonRight, {
+                  [classes.arrowButtonHide]: mouseIdle,
+                })}
               />
             </div>
           )}
           <CloseArrow
-            className={classes.arrowButtonReturn}
+            className={cx(classes.arrowButtonReturn, {
+              [classes.arrowButtonHide]: mouseIdle,
+            })}
             onClick={this.handleClose}
           />
         </div>
@@ -201,6 +225,10 @@ GooglePhoto.propTypes = {
    */
   fullscreen: PropTypes.bool,
   /**
+   * Timeout before hidding the actions buttons when mouse do not move (milliseconds)
+   */
+  mouseIdleTimeout: PropTypes.number,
+  /**
    * Function called when the previous image is requested
    */
   onClickPrev: PropTypes.func.isRequired,
@@ -220,6 +248,7 @@ GooglePhoto.propTypes = {
 
 GooglePhoto.defaultProps = {
   fullscreen: false,
+  mouseIdleTimeout: 5000,
 };
 
 export default injectSheet(styles)(GooglePhoto);
