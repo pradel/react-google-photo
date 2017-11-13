@@ -66,7 +66,7 @@ class GooglePhoto extends Component {
       this.handleClickPrev();
     } else if (e.keyCode === keycodes.right) {
       this.handleClickNext();
-    } else if (e.keyCode === keycodes.esc) {
+    } else if (e.keyCode === keycodes.esc && this.props.closeOnEsc) {
       this.handleClose();
     }
   };
@@ -222,6 +222,10 @@ GooglePhoto.propTypes = {
    */
   srcIndex: PropTypes.number.isRequired,
   /**
+   * Is closable when user press esc key
+   */
+  closeOnEsc: PropTypes.bool,
+  /**
    * Should open on fullscreen mode
    */
   fullscreen: PropTypes.bool,
@@ -248,6 +252,7 @@ GooglePhoto.propTypes = {
 };
 
 GooglePhoto.defaultProps = {
+  closeOnEsc: true,
   fullscreen: false,
   mouseIdleTimeout: 5000,
 };
