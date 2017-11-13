@@ -7,7 +7,7 @@ import noScroll from 'no-scroll';
 import cx from 'classnames';
 import screenfull from 'screenfull';
 import styles from './styles';
-import { PrevArrowButton, NextArrowButton } from './arrow';
+import { CloseArrow, PrevArrowButton, NextArrowButton } from './arrow';
 
 const keycodes = {
   esc: 27,
@@ -158,6 +158,10 @@ class GooglePhoto extends Component {
               />
             </div>
           )}
+          <CloseArrow
+            className={classes.arrowButtonReturn}
+            onClick={this.handleClose}
+          />
         </div>
       </Portal>
     );

@@ -26,6 +26,17 @@ export default {
   rightColumn: {
     right: 0,
   },
+  arrowButtonReturn: {
+    height: 48,
+    width: 48,
+    position: 'absolute',
+    top: 8,
+    left: 14,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+  },
   arrowButton: {
     backgroundColor: 'rgba(66,66,66,0.54)',
     borderRadius: 28,
@@ -34,18 +45,15 @@ export default {
     marginTop: -28,
     height: 56,
     width: 56,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   arrowButtonLeft: {
     left: 28,
   },
   arrowButtonRight: {
     right: 28,
-  },
-  arrowButtonSvg: {
-    fill: 'white',
-    position: 'absolute',
-    left: 10,
-    top: 10,
   },
   image: {
     position: 'absolute',
