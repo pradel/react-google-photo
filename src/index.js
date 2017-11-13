@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-minimalist-portal';
-// import Transition from 'react-transition-group/Transition';
+import Transition from 'react-transition-group/Transition';
 import injectSheet from 'react-jss';
 import noScroll from 'no-scroll';
 import cx from 'classnames';
@@ -22,6 +22,7 @@ class GooglePhoto extends Component {
       width: typeof window !== 'undefined' ? window.innerWidth : 0,
       height: typeof window !== 'undefined' ? window.innerHeight : 0,
       mouseIdle: false,
+      showPortal: props.open,
     };
   }
 
@@ -39,6 +40,7 @@ class GooglePhoto extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.open && nextProps.open) {
       noScroll.on();
+      this.setState({ showPortal: true });
       if (this.props.fullscreen && screenfull.enabled) {
         screenfull.request();
       }
@@ -98,9 +100,20 @@ class GooglePhoto extends Component {
     this.props.onClose();
   };
 
+  handleExited = () => {
+    this.setState({ showPortal: false });
+  };
+
   render() {
-    const { open, src, srcIndex, classes } = this.props;
-    const { width, height, mouseIdle } = this.state;
+    const {
+      open,
+      src,
+      srcIndex,
+      classes,
+      transitionDuration,
+      transitionStyles,
+    } = this.props;
+    const { width, height, mouseIdle, showPortal } = this.state;
     const image = src[srcIndex];
     const wrapperImageStyle = {
       position: 'absolute',
@@ -137,57 +150,80 @@ class GooglePhoto extends Component {
       wrapperImageStyle.height = height;
       wrapperImageStyle.left = (width - imageWidth) / 2;
     }
-    if (!open) {
-      return null;
-    }
+
     return (
       <Portal>
-        <div className={classes.overlay}>
-          <div style={wrapperImageStyle}>
-            {src.map((source, index) => (
-              <img
-                key={index}
-                src={source.src}
-                alt={source.alt}
-                width={wrapperImageStyle.width}
-                height={wrapperImageStyle.height}
-                className={cx(classes.image, {
-                  [classes.imageOpen]: index === srcIndex,
-                })}
-              />
-            ))}
-          </div>
-          {srcIndex !== 0 && (
-            <div
-              className={cx(classes.column, classes.leftColumn)}
-              onClick={this.handleClickPrev}
-            >
-              <PrevArrowButton
-                className={cx(classes.arrowButton, classes.arrowButtonLeft, {
-                  [classes.arrowButtonHide]: mouseIdle,
-                })}
-              />
-            </div>
-          )}
-          {src[srcIndex + 1] && (
-            <div
-              className={cx(classes.column, classes.rightColumn)}
-              onClick={this.handleClickNext}
-            >
-              <NextArrowButton
-                className={cx(classes.arrowButton, classes.arrowButtonRight, {
-                  [classes.arrowButtonHide]: mouseIdle,
-                })}
-              />
-            </div>
-          )}
-          <CloseArrow
-            className={cx(classes.arrowButtonReturn, {
-              [classes.arrowButtonHide]: mouseIdle,
-            })}
-            onClick={this.handleClose}
-          />
-        </div>
+        <Transition
+          in={open}
+          timeout={transitionDuration}
+          appear
+          onExited={this.handleExited}
+        >
+          {state =>
+            showPortal && (
+              <div
+                className={classes.overlay}
+                style={{
+                  ...transitionStyles.default,
+                  ...transitionStyles[state],
+                }}
+              >
+                <div style={wrapperImageStyle}>
+                  {src.map((source, index) => (
+                    <img
+                      key={index}
+                      src={source.src}
+                      alt={source.alt}
+                      width={wrapperImageStyle.width}
+                      height={wrapperImageStyle.height}
+                      className={cx(classes.image, {
+                        [classes.imageOpen]: index === srcIndex,
+                      })}
+                    />
+                  ))}
+                </div>
+                {srcIndex !== 0 && (
+                  <div
+                    className={cx(classes.column, classes.leftColumn)}
+                    onClick={this.handleClickPrev}
+                  >
+                    <PrevArrowButton
+                      className={cx(
+                        classes.arrowButton,
+                        classes.arrowButtonLeft,
+                        {
+                          [classes.arrowButtonHide]: mouseIdle,
+                        }
+                      )}
+                    />
+                  </div>
+                )}
+                {src[srcIndex + 1] && (
+                  <div
+                    className={cx(classes.column, classes.rightColumn)}
+                    onClick={this.handleClickNext}
+                  >
+                    <NextArrowButton
+                      className={cx(
+                        classes.arrowButton,
+                        classes.arrowButtonRight,
+                        {
+                          [classes.arrowButtonHide]: mouseIdle,
+                        }
+                      )}
+                    />
+                  </div>
+                )}
+                <CloseArrow
+                  className={cx(classes.arrowButtonReturn, {
+                    [classes.arrowButtonHide]: mouseIdle,
+                  })}
+                  onClick={this.handleClose}
+                />
+              </div>
+            )
+          }
+        </Transition>
       </Portal>
     );
   }
@@ -230,6 +266,16 @@ GooglePhoto.propTypes = {
    */
   keyboardNavigation: PropTypes.bool,
   /**
+   * The duration of the transition, in milliseconds
+   * https://reactcommunity.org/react-transition-group/#Transition-prop-timeout
+   */
+  transitionDuration: PropTypes.number,
+  /**
+   * The animation object see https://reactcommunity.org/react-transition-group/#Transition
+   * Add a default key to still the default style
+   */
+  transitionStyles: PropTypes.object, // eslint-disable-line
+  /**
    * Should open on fullscreen mode
    */
   fullscreen: PropTypes.bool,
@@ -260,6 +306,16 @@ GooglePhoto.defaultProps = {
   keyboardNavigation: true,
   fullscreen: false,
   mouseIdleTimeout: 5000,
+  transitionDuration: 200,
+  transitionStyles: {
+    default: {
+      transition: `opacity 200ms ease-in-out`,
+      opacity: 0,
+    },
+    entering: { opacity: 0 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+  },
 };
 
 export default injectSheet(styles)(GooglePhoto);
