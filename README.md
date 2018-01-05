@@ -6,9 +6,7 @@
 
 You can find a demo [here](https://react-google-photo.leopradel.com/).
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/TPcxj3ZMAXdSxzhvJ7SzjaQY/pradel/react-google-photo'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/TPcxj3ZMAXdSxzhvJ7SzjaQY/pradel/react-google-photo.svg' />
-</a>
+
 
 ## Installation
 
