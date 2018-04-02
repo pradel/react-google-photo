@@ -1,4 +1,5 @@
 import React from 'react';
+import Gallery from 'react-photo-gallery';
 import GooglePhoto from '../../../src/index';
 
 // https://unsplash.com/collections/589374/textures
@@ -43,19 +44,19 @@ class IndexPage extends React.Component {
     this.setState({ index: this.state.index + 1 });
   };
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
   handleClose = () => {
     this.setState({ open: false });
+  };
+
+  handleClickGallery = (e, data) => {
+    this.setState({ open: true, index: data.index });
   };
 
   render() {
     const { open, index } = this.state;
     return (
       <div>
-        <button onClick={this.handleOpen}>Open</button>
+        <Gallery photos={images} onClick={this.handleClickGallery} />
         <GooglePhoto
           open={open}
           src={images}
