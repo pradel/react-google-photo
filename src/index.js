@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-minimalist-portal';
 import Transition from 'react-transition-group/Transition';
@@ -15,7 +17,109 @@ const keycodes = {
   right: 39,
 };
 
-class GooglePhoto extends Component {
+type Image = {
+  /**
+   * Url of the media
+   */
+  src: number,
+  /**
+   * Height of the media
+   */
+  height: number,
+  /**
+   * Width of the media
+   */
+  width: number,
+  /**
+   * Description of the media
+   */
+  alt?: string,
+};
+
+type Props = {
+  /**
+   * Control if GooglePhoto is open or not
+   */
+  open: boolean,
+  /**
+   * An array containing valid images
+   */
+  src: Image[],
+  /**
+   * Index of source to display
+   */
+  srcIndex: number,
+  /**
+   * Is closable when user press esc key
+   */
+  closeOnEsc: boolean,
+  /**
+   * Enable left and right arrow navigation
+   */
+  keyboardNavigation: boolean,
+  /**
+   * The duration of the transition, in milliseconds
+   * https://reactcommunity.org/react-transition-group/#Transition-prop-timeout
+   */
+  transitionDuration: number,
+  /**
+   * The animation object see https://reactcommunity.org/react-transition-group/#Transition
+   * Add a default key to still the default style
+   */
+  transitionStyles: Object,
+  /**
+   * Should open on fullscreen mode
+   */
+  fullscreen: boolean,
+  /**
+   * Timeout before hidding the actions buttons when mouse do not move (milliseconds)
+   */
+  mouseIdleTimeout: number,
+  /**
+   * Function called when the previous image is requested
+   */
+  onClickPrev: Function,
+  /**
+   * Function called when the next image is requested
+   */
+  onClickNext: Function,
+  /**
+   * Function called when GooglePhoto is requested to be closed
+   */
+  onClose: Function,
+  /**
+   * Object of classes to style the element
+   */
+  classes: Object,
+};
+
+type State = {
+  width: number,
+  height: number,
+  mouseIdle: boolean,
+  showPortal: boolean,
+};
+
+class GooglePhoto extends React.Component<Props, State> {
+  static defaultProps = {
+    closeOnEsc: true,
+    keyboardNavigation: true,
+    fullscreen: false,
+    mouseIdleTimeout: 5000,
+    transitionDuration: 200,
+    transitionStyles: {
+      default: {
+        transition: `opacity 200ms ease-in-out`,
+        opacity: 0,
+      },
+      entering: { opacity: 0 },
+      entered: { opacity: 1 },
+      exiting: { opacity: 0 },
+    },
+  };
+
+  timeoutMouseIdle: any;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,9 +133,10 @@ class GooglePhoto extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeydown);
     window.addEventListener('resize', this.handleWindowResize);
-    document
-      .querySelector('*')
-      .addEventListener('mousemove', this.handleMousemove);
+    const element = document.querySelector('*');
+    if (element) {
+      element.addEventListener('mousemove', this.handleMousemove);
+    }
     if (this.props.open) {
       noScroll.on();
     }
@@ -53,9 +158,10 @@ class GooglePhoto extends Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeydown);
     window.removeEventListener('resize', this.handleWindowResize);
-    document
-      .querySelector('*')
-      .removeEventListener('mousemove', this.handleMousemove);
+    const element = document.querySelector('*');
+    if (element) {
+      element.removeEventListener('mousemove', this.handleMousemove);
+    }
     noScroll.off();
   }
 
@@ -63,7 +169,7 @@ class GooglePhoto extends Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
 
-  handleKeydown = e => {
+  handleKeydown = (e: KeyboardEvent) => {
     if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
       this.handleClickPrev();
     } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
@@ -119,6 +225,10 @@ class GooglePhoto extends Component {
       position: 'absolute',
       overflow: 'hidden',
       userSelect: 'none',
+      left: 0,
+      height: 0,
+      width: 0,
+      top: 0,
     };
     let imageWidth = image.width;
     let imageHeight = image.height;
@@ -230,94 +340,5 @@ class GooglePhoto extends Component {
     );
   }
 }
-
-GooglePhoto.propTypes = {
-  /**
-   * Control if GooglePhoto is open or not
-   */
-  open: PropTypes.bool.isRequired,
-  /**
-   * An array containing valid images
-   */
-  src: PropTypes.arrayOf(
-    PropTypes.shape({
-      /**
-       * Url of the media
-       */
-      src: PropTypes.string.isRequired,
-      /**
-       * Height of the media
-       */
-      height: PropTypes.number.isRequired,
-      /**
-       * Width of the media
-       */
-      width: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-  /**
-   * Index of source to display
-   */
-  srcIndex: PropTypes.number.isRequired,
-  /**
-   * Is closable when user press esc key
-   */
-  closeOnEsc: PropTypes.bool,
-  /**
-   * Enable left and right arrow navigation
-   */
-  keyboardNavigation: PropTypes.bool,
-  /**
-   * The duration of the transition, in milliseconds
-   * https://reactcommunity.org/react-transition-group/#Transition-prop-timeout
-   */
-  transitionDuration: PropTypes.number,
-  /**
-   * The animation object see https://reactcommunity.org/react-transition-group/#Transition
-   * Add a default key to still the default style
-   */
-  transitionStyles: PropTypes.object, // eslint-disable-line
-  /**
-   * Should open on fullscreen mode
-   */
-  fullscreen: PropTypes.bool,
-  /**
-   * Timeout before hidding the actions buttons when mouse do not move (milliseconds)
-   */
-  mouseIdleTimeout: PropTypes.number,
-  /**
-   * Function called when the previous image is requested
-   */
-  onClickPrev: PropTypes.func.isRequired,
-  /**
-   * Function called when the next image is requested
-   */
-  onClickNext: PropTypes.func.isRequired,
-  /**
-   * Function called when GooglePhoto is requested to be closed
-   */
-  onClose: PropTypes.func.isRequired,
-  /**
-   * Object of classes to style the element
-   */
-  classes: PropTypes.object.isRequired, // eslint-disable-line
-};
-
-GooglePhoto.defaultProps = {
-  closeOnEsc: true,
-  keyboardNavigation: true,
-  fullscreen: false,
-  mouseIdleTimeout: 5000,
-  transitionDuration: 200,
-  transitionStyles: {
-    default: {
-      transition: `opacity 200ms ease-in-out`,
-      opacity: 0,
-    },
-    entering: { opacity: 0 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-  },
-};
 
 export default injectSheet(styles)(GooglePhoto);
