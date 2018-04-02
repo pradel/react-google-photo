@@ -52,8 +52,8 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "plugins": ["flowtype"],
-    "extends": ["plugin:flowtype/recommended"],
+    "plugins": ["flowtype", "prettier"],
+    "extends": ["prettier", "plugin:flowtype/recommended"],
     "env": {
       "browser": true
     }
