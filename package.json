@@ -6,7 +6,7 @@
     "flow": "flow status",
     "build": "babel src --out-dir lib",
     "prepublish": "yarn run build",
-    "lint": "eslint src docs/src",
+    "lint": "eslint 'src' 'docs/src'",
     "test": "yarn lint && yarn flow && yarn build",
     "prettier":
       "prettier --write \"src/**/*.js\" \"docs/src/**/*.{js,css,json}\"",
