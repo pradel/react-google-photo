@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import '../styles/style.scss';
 
-const IndexLayout = ({ children }) => (
+const IndexLayout: React.SFC = ({ children }: any) => (
   <React.Fragment>
     <Helmet
       title="react-google-photo"
@@ -16,9 +15,5 @@ const IndexLayout = ({ children }) => (
     {children()}
   </React.Fragment>
 );
-
-IndexLayout.propTypes = {
-  children: PropTypes.func, // eslint-disable-line
-};
 
 export default IndexLayout;

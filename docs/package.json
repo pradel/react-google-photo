@@ -15,7 +15,12 @@
     "start": "gatsby develop"
   },
   "devDependencies": {
+    "@types/react": "^16.3.5",
+    "@types/react-dom": "^16.0.4",
+    "@types/react-helmet": "^5.0.5",
     "gatsby-plugin-react-next": "^1.0.11",
-    "gatsby-plugin-sass": "^1.0.25"
+    "gatsby-plugin-sass": "^1.0.25",
+    "gatsby-plugin-typescript": "^1.4.19",
+    "typescript": "^2.8.1"
   }
 }

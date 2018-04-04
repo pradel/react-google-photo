@@ -1,6 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import Gallery from 'react-photo-gallery';
-import GooglePhoto from '../../../src/index';
+import GooglePhoto from '../../../lib/index';
+
+console.log(GooglePhoto);
 
 // https://unsplash.com/collections/589374/textures
 const images = [
@@ -30,7 +32,7 @@ const images = [
   },
 ];
 
-class IndexPage extends React.Component {
+class IndexPage extends React.Component<{}, {}> {
   state = {
     index: 0,
     open: false,
@@ -48,7 +50,7 @@ class IndexPage extends React.Component {
     this.setState({ open: false });
   };
 
-  handleClickGallery = (e, data) => {
+  handleClickGallery = (e: any, data: any) => {
     this.setState({ open: true, index: data.index });
   };
 

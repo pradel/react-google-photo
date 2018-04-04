@@ -9,7 +9,7 @@
     "lint": "eslint 'src' 'docs/src'",
     "test": "yarn lint && yarn flow && yarn build",
     "prettier":
-      "prettier --write \"src/**/*.js\" \"docs/src/**/*.{js,css,json}\"",
+      "prettier --write \"src/**/*.{js,ts,tsx}\" \"docs/src/**/*.{js,ts,tsx,css,scss,json}\"",
     "precommit": "lint-staged"
   },
   "lint-staged": {
