@@ -60,35 +60,41 @@ class IndexPage extends React.Component<{}, {}> {
         <div className="columns">
           <div className="column is-3">
             <Menu>
-              <MenuLabel>General</MenuLabel>
               <MenuList>
                 <MenuListItem>
                   <a href="#getting-started">Getting started</a>
                 </MenuListItem>
                 <MenuListItem>
-                  <a href="#getting-started">Props</a>
-                  <ul>
-                    <li>
-                      <a href="#getting-started">Options</a>
-                    </li>
-                  </ul>
+                  <a href="#examples">Examples</a>
                 </MenuListItem>
                 <MenuListItem>
-                  <a href="#getting-started">Customization</a>
+                  <a href="#usage">Usage</a>
+                </MenuListItem>
+                <MenuListItem>
+                  <a href="#options">Options</a>
                 </MenuListItem>
               </MenuList>
             </Menu>
           </div>
           <div className="column is-9">
-            <Gallery photos={images} onClick={this.handleClickGallery} />
-            <GooglePhoto
-              open={open}
-              src={images}
-              srcIndex={index}
-              onClickPrev={this.handleClickPrev}
-              onClickNext={this.handleClickNext}
-              onClose={this.handleClose}
-            />
+            <div className="content">
+              <h3 id="getting-started">Getting Started</h3>
+              <p>Start by installing the module</p>
+              <pre>
+                <code>yarn add react-google-photo</code>
+              </pre>
+
+              <h3 id="examples">Examples</h3>
+              <Gallery photos={images} onClick={this.handleClickGallery} />
+              <GooglePhoto
+                open={open}
+                src={images}
+                srcIndex={index}
+                onClickPrev={this.handleClickPrev}
+                onClickNext={this.handleClickNext}
+                onClose={this.handleClose}
+              />
+            </div>
           </div>
         </div>
       </div>
