@@ -7,7 +7,8 @@
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "react-helmet": "^5.2.0",
-    "react-photo-gallery": "^6.0.22"
+    "react-photo-gallery": "^6.0.22",
+    "styled-components": "^3.2.5"
   },
   "keywords": ["gatsby"],
   "scripts": {
@@ -20,6 +21,7 @@
     "@types/react-helmet": "^5.0.5",
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-sass": "^1.0.25",
+    "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typescript": "^1.4.19",
     "typescript": "^2.8.1"
   }

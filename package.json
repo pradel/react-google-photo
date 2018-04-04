@@ -13,7 +13,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["prettier --write", "git add"]
+    "*.{js,ts,tsx,json,css,scss}": ["prettier --write", "git add"]
   },
   "repository": "https://github.com/pradel/react-google-photo.git",
   "author": "Pradel Léo <pradel.leo@gmail.com>",
