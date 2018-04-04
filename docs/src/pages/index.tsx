@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Gallery from 'react-photo-gallery';
 import GooglePhoto from '../../../lib/index';
-
-console.log(GooglePhoto);
+import { Menu, MenuLabel, MenuList, MenuListItem } from '../theme';
 
 // https://unsplash.com/collections/589374/textures
 const images = [
@@ -60,25 +59,25 @@ class IndexPage extends React.Component<{}, {}> {
       <div className="container">
         <div className="columns">
           <div className="column is-3">
-            <aside className="menu">
-              <p className="menu-label">General</p>
-              <ul className="menu-list">
-                <li>
-                  <a>Getting started</a>
-                </li>
-                <li>
-                  <a>Props</a>
+            <Menu>
+              <MenuLabel>General</MenuLabel>
+              <MenuList>
+                <MenuListItem>
+                  <a href="#getting-started">Getting started</a>
+                </MenuListItem>
+                <MenuListItem>
+                  <a href="#getting-started">Props</a>
                   <ul>
                     <li>
-                      <a>Options</a>
+                      <a href="#getting-started">Options</a>
                     </li>
                   </ul>
-                </li>
-                <li>
-                  <a>Customization</a>
-                </li>
-              </ul>
-            </aside>
+                </MenuListItem>
+                <MenuListItem>
+                  <a href="#getting-started">Customization</a>
+                </MenuListItem>
+              </MenuList>
+            </Menu>
           </div>
           <div className="column is-9">
             <Gallery photos={images} onClick={this.handleClickGallery} />
