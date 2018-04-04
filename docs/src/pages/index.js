@@ -55,16 +55,41 @@ class IndexPage extends React.Component {
   render() {
     const { open, index } = this.state;
     return (
-      <div>
-        <Gallery photos={images} onClick={this.handleClickGallery} />
-        <GooglePhoto
-          open={open}
-          src={images}
-          srcIndex={index}
-          onClickPrev={this.handleClickPrev}
-          onClickNext={this.handleClickNext}
-          onClose={this.handleClose}
-        />
+      <div className="container">
+        <div className="columns">
+          <div className="column is-3">
+            <aside className="menu">
+              <p className="menu-label">General</p>
+              <ul className="menu-list">
+                <li>
+                  <a>Getting started</a>
+                </li>
+                <li>
+                  <a>Props</a>
+                  <ul>
+                    <li>
+                      <a>Options</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Customization</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
+          <div className="column is-9">
+            <Gallery photos={images} onClick={this.handleClickGallery} />
+            <GooglePhoto
+              open={open}
+              src={images}
+              srcIndex={index}
+              onClickPrev={this.handleClickPrev}
+              onClickNext={this.handleClickNext}
+              onClose={this.handleClose}
+            />
+          </div>
+        </div>
       </div>
     );
   }

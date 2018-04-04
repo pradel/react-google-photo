@@ -2,14 +2,20 @@
   "name": "docs",
   "private": true,
   "dependencies": {
-    "gatsby": "^1.9.102",
-    "gatsby-link": "^1.6.24",
-    "gatsby-plugin-react-helmet": "^1.0.8",
-    "react-photo-gallery": "^6.0.16"
+    "bulma": "^0.6.2",
+    "gatsby": "^1.9.246",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-react-helmet": "^2.0.10",
+    "react-helmet": "^5.2.0",
+    "react-photo-gallery": "^6.0.22"
   },
   "keywords": ["gatsby"],
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop"
+  },
+  "devDependencies": {
+    "gatsby-plugin-react-next": "^1.0.11",
+    "gatsby-plugin-sass": "^1.0.25"
   }
 }
