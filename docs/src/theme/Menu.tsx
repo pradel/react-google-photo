@@ -13,7 +13,7 @@ export const MenuList: React.SFC = ({ ...props }) => (
 );
 
 export const MenuListItem: React.SFC = ({ ...props }) => (
-  <li className="" {...props} />
+  <li className="mb-3" {...props} />
 );
 
 interface MenuListItemAProps {
@@ -21,8 +21,5 @@ interface MenuListItemAProps {
 }
 
 export const MenuListItemA: React.SFC<MenuListItemAProps> = ({ ...props }) => (
-  <a
-    className="block p-4 text-grey-darker font-bold hover:border-purple hover:bg-grey-lighter border-r-4"
-    {...props}
-  />
+  <a className="text-grey-darker hover:text-teal" {...props} />
 );

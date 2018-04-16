@@ -2,10 +2,6 @@
 
 html {
   font-size: 14px;
-
-  @media (min-width: 420px) {
-    font-size: 16px;
-  }
 }
 
 a {
@@ -16,6 +12,19 @@ a {
 ol,
 ul {
   @apply .list-reset;
+}
+
+.markdown p {
+  @apply .text-base;
+  @apply .text-grey-darkest;
+  @apply .leading-normal;
+  @apply .mt-4;
+  @apply .mb-4;
+}
+
+.markdown p strong,
+.markdown ul strong {
+  @apply .font-semibold;
 }
 
 @tailwind components;

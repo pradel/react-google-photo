@@ -62,50 +62,48 @@ class IndexPage extends React.Component<{}, {}> {
   render() {
     const { open, index } = this.state;
     return (
-      <div className="w-full max-w-screen-xl mx-auto px-6">
-        <div className="lg:flex -mx-6">
-          <div className="hidden absolute z-90 top-16 bg-white w-full border-b -mb-16 lg:-mb-0 lg:static lg:bg-transparent lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5">
-            <div className="lg:block lg:relative lg:sticky lg:top-16">
-              <div className="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
-                <Menu>
-                  <MenuList>
-                    <MenuListItem>
-                      <MenuListItemA href="#getting-started">
-                        Getting started
-                      </MenuListItemA>
-                    </MenuListItem>
-                    <MenuListItem>
-                      <MenuListItemA href="#examples">Examples</MenuListItemA>
-                    </MenuListItem>
-                    <MenuListItem>
-                      <MenuListItemA href="#usage">Usage</MenuListItemA>
-                    </MenuListItem>
-                    <MenuListItem>
-                      <MenuListItemA href="#options">Options</MenuListItemA>
-                    </MenuListItem>
-                  </MenuList>
-                </Menu>
-              </div>
-            </div>
+      <div className="container mx-auto">
+        <div className="flex">
+          <div className="w-1/4">
+            <Menu>
+              <MenuList>
+                <MenuListItem>
+                  <MenuListItemA href="#getting-started">
+                    Getting started
+                  </MenuListItemA>
+                </MenuListItem>
+                <MenuListItem>
+                  <MenuListItemA href="#examples">Examples</MenuListItemA>
+                </MenuListItem>
+                <MenuListItem>
+                  <MenuListItemA href="#usage">Usage</MenuListItemA>
+                </MenuListItem>
+                <MenuListItem>
+                  <MenuListItemA href="#options">Options</MenuListItemA>
+                </MenuListItem>
+              </MenuList>
+            </Menu>
           </div>
-          <div className="min-h-screen w-full lg:w-3/4 xl:w-4/5">
-            <div className="content">
-              <h3 id="getting-started">Getting Started</h3>
-              <p>Start by installing the module</p>
-              <pre>
-                <code>yarn add react-google-photo</code>
-              </pre>
+          <div className="w-3/4">
+            <div className="pb-8">
+              <div className="markdown">
+                <h3 id="getting-started">Getting Started</h3>
+                <p>Start by installing the module</p>
+                <pre>
+                  <code>yarn add react-google-photo</code>
+                </pre>
 
-              <h3 id="examples">Examples</h3>
-              <Gallery photos={images} onClick={this.handleClickGallery} />
-              <GooglePhoto
-                open={open}
-                src={images}
-                srcIndex={index}
-                onClickPrev={this.handleClickPrev}
-                onClickNext={this.handleClickNext}
-                onClose={this.handleClose}
-              />
+                <h3 id="examples">Examples</h3>
+                <Gallery photos={images} onClick={this.handleClickGallery} />
+                <GooglePhoto
+                  open={open}
+                  src={images}
+                  srcIndex={index}
+                  onClickPrev={this.handleClickPrev}
+                  onClickNext={this.handleClickNext}
+                  onClose={this.handleClose}
+                />
+              </div>
             </div>
           </div>
         </div>
