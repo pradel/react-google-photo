@@ -6,27 +6,30 @@
     "gatsby": "^1.9.246",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
+    "github-markdown-css": "^2.10.0",
     "react-helmet": "^5.2.0",
     "react-photo-gallery": "^6.0.22",
     "styled-components": "^3.2.5",
     "tailwindcss": "^0.5.2"
   },
-  "keywords": ["gatsby"],
   "scripts": {
     "build": "yarn build:tailwind && yarn build:gatsby",
     "build:gatsby": "gatsby build",
     "build:tailwind":
-      "tailwind build src/styles/tailwind.css -o src/styles/tailwind-generated.css",
+      "postcss src/styles/tailwind.css -o src/styles/tailwind-generated.css",
+    "watch:tailwind": "yarn build:tailwind -w",
     "start": "yarn build:tailwind && gatsby develop"
   },
   "devDependencies": {
     "@types/react": "^16.3.5",
     "@types/react-dom": "^16.0.4",
     "@types/react-helmet": "^5.0.5",
+    "autoprefixer": "^8.3.0",
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-sass": "^1.0.25",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typescript": "^1.4.19",
+    "postcss-cli": "^5.0.0",
     "typescript": "^2.8.1"
   }
 }

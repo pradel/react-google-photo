@@ -85,9 +85,9 @@ class IndexPage extends React.Component<{}, {}> {
             </Menu>
           </div>
           <div className="w-3/4">
-            <div className="pb-8">
-              <div className="markdown">
-                <h3 id="getting-started">Getting Started</h3>
+            <div className="pb-8 flex">
+              <div className="markdown-body mt-8">
+                <h2 id="getting-started">Getting Started</h2>
                 <p>Start by installing the module</p>
                 <pre>
                   <code>yarn add react-google-photo</code>

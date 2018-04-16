@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
+import 'github-markdown-css/github-markdown.css';
 import '../styles/tailwind-generated.css';
 import { Footer } from '../components/Footer';
 
