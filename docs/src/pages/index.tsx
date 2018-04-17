@@ -37,7 +37,16 @@ const images = [
   },
 ];
 
-class IndexPage extends React.Component<{}, {}> {
+interface Props {
+  data: any;
+}
+
+interface State {
+  index: number;
+  open: boolean;
+}
+
+class IndexPage extends React.Component<Props, State> {
   state = {
     index: 0,
     open: false,
@@ -60,7 +69,10 @@ class IndexPage extends React.Component<{}, {}> {
   };
 
   render() {
+    const { data } = this.props;
     const { open, index } = this.state;
+    const page = data.allMarkdownRemark.edges[0].node;
+    console.log(page);
     return (
       <div className="container mx-auto mt-16">
         <div className="flex flex-col lg:flex-row">
@@ -68,7 +80,9 @@ class IndexPage extends React.Component<{}, {}> {
             <Menu>
               <MenuList>
                 <MenuListItem>
-                  <MenuListItemA href="#examples">Introduction</MenuListItemA>
+                  <MenuListItemA href="#introduction">
+                    Introduction
+                  </MenuListItemA>
                 </MenuListItem>
                 <MenuListItem>
                   <MenuListItemA href="#getting-started">
@@ -90,47 +104,8 @@ class IndexPage extends React.Component<{}, {}> {
           <div className="lg:w-5/6">
             <div className="pb-8 flex">
               <div className="markdown-body w-100">
-                <h2 id="introduction">Introduction</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
-                  Curabitur fermentum justo nisi, nec consectetur purus dictum
-                  sed. Integer facilisis aliquam nulla eget pretium. In
-                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
-                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
-                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
-                  dapibus tempus.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
-                  Curabitur fermentum justo nisi, nec consectetur purus dictum
-                  sed. Integer facilisis aliquam nulla eget pretium. In
-                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
-                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
-                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
-                  dapibus tempus.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
-                  Curabitur fermentum justo nisi, nec consectetur purus dictum
-                  sed. Integer facilisis aliquam nulla eget pretium. In
-                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
-                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
-                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
-                  dapibus tempus.
-                </p>
-                <h2 id="getting-started">Getting Started</h2>
-                <p>Start by installing the module</p>
-                <pre>
-                  <code>
-                    yarn add react-google-photo # OR with npm npm install
-                    react-google-photo
-                  </code>
-                </pre>
+                <div dangerouslySetInnerHTML={{ __html: page.html }} />
 
-                <h3 id="examples">Examples</h3>
                 <Gallery photos={images} onClick={this.handleClickGallery} />
                 <GooglePhoto
                   open={open}
@@ -150,3 +125,15 @@ class IndexPage extends React.Component<{}, {}> {
 }
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    allMarkdownRemark {
+      edges {
+        node {
+          html
+        }
+      }
+    }
+  }
+`;

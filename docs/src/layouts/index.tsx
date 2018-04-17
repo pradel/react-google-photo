@@ -3,6 +3,7 @@ import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import 'github-markdown-css/github-markdown.css';
 import '../styles/tailwind-generated.css';
+require(`prismjs/themes/prism-solarizedlight.css`);
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 

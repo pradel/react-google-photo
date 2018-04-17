@@ -3,13 +3,14 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.6.2",
-    "gatsby": "^1.9.246",
+    "gatsby": "^1.9.251",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "github-markdown-css": "^2.10.0",
+    "prismjs": "^1.14.0",
     "react-helmet": "^5.2.0",
-    "react-photo-gallery": "^6.0.22",
-    "styled-components": "^3.2.5",
+    "react-photo-gallery": "^6.0.24",
+    "styled-components": "^3.2.6",
     "tailwindcss": "^0.5.2"
   },
   "scripts": {
@@ -29,6 +30,10 @@
     "gatsby-plugin-sass": "^1.0.25",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typescript": "^1.4.19",
+    "gatsby-remark-autolink-headers": "^1.4.16",
+    "gatsby-remark-prismjs": "^2.0.1",
+    "gatsby-source-filesystem": "^1.5.32",
+    "gatsby-transformer-remark": "^1.7.40",
     "postcss-cli": "^5.0.0",
     "typescript": "^2.8.1"
   }
