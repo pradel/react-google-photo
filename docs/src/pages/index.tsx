@@ -19,7 +19,7 @@ class IndexPage extends React.Component<Props, {}> {
     return (
       <div className="container mx-auto mt-16">
         <div className="flex flex-col lg:flex-row">
-          <div className="lg:w-1/6">
+          <div className="lg:w-1/6 px-4">
             <Menu>
               <MenuList>
                 <MenuListItem>
@@ -33,10 +33,10 @@ class IndexPage extends React.Component<Props, {}> {
                   </MenuListItemA>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#examples">Examples</MenuListItemA>
+                  <MenuListItemA href="#usage">Usage</MenuListItemA>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#usage">Usage</MenuListItemA>
+                  <MenuListItemA href="#examples">Examples</MenuListItemA>
                 </MenuListItem>
                 <MenuListItem>
                   <MenuListItemA href="#options">Options</MenuListItemA>
@@ -44,7 +44,7 @@ class IndexPage extends React.Component<Props, {}> {
               </MenuList>
             </Menu>
           </div>
-          <div className="lg:w-5/6">
+          <div className="lg:w-5/6 px-4">
             <div className="pb-8 flex">
               <div className="w-100 markdown-content">
                 <div dangerouslySetInnerHTML={{ __html: page.html }} />
