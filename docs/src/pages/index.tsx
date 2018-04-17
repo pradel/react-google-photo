@@ -17,7 +17,7 @@ class IndexPage extends React.Component<Props, {}> {
     const { data } = this.props;
     const page = data.allMarkdownRemark.edges[0].node;
     return (
-      <div className="container mx-auto mt-16">
+      <div className="container mx-auto pb-8" style={{ marginTop: '8rem' }}>
         <div className="flex flex-col lg:flex-row">
           <div className="lg:w-1/6 px-4">
             <Menu>
@@ -45,7 +45,7 @@ class IndexPage extends React.Component<Props, {}> {
             </Menu>
           </div>
           <div className="lg:w-5/6 px-4">
-            <div className="pb-8 flex">
+            <div className="flex">
               <div className="w-100 markdown-content">
                 <div dangerouslySetInnerHTML={{ __html: page.html }} />
 
