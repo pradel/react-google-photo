@@ -14,7 +14,7 @@ const IndexLayout: React.SFC = ({ children }: any) => (
       title="react-google-photo"
       meta={[
         { name: 'description', content: 'A react lightbox component' },
-        { name: 'keywords', content: 'react, google, photo' },
+        { name: 'keywords', content: 'react, lightbox, google, photo' },
       ]}
       htmlAttributes={{
         className: 'bg-white antialiased',

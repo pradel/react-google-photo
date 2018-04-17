@@ -68,6 +68,9 @@ class IndexPage extends React.Component<{}, {}> {
             <Menu>
               <MenuList>
                 <MenuListItem>
+                  <MenuListItemA href="#examples">Introduction</MenuListItemA>
+                </MenuListItem>
+                <MenuListItem>
                   <MenuListItemA href="#getting-started">
                     Getting started
                   </MenuListItemA>
@@ -87,6 +90,37 @@ class IndexPage extends React.Component<{}, {}> {
           <div className="w-5/6">
             <div className="pb-8 flex">
               <div className="markdown-body">
+                <h2 id="introduction">Introduction</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
+                  Curabitur fermentum justo nisi, nec consectetur purus dictum
+                  sed. Integer facilisis aliquam nulla eget pretium. In
+                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
+                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
+                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
+                  dapibus tempus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
+                  Curabitur fermentum justo nisi, nec consectetur purus dictum
+                  sed. Integer facilisis aliquam nulla eget pretium. In
+                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
+                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
+                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
+                  dapibus tempus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  varius ex a libero blandit sollicitudin. Suspendisse potenti.
+                  Curabitur fermentum justo nisi, nec consectetur purus dictum
+                  sed. Integer facilisis aliquam nulla eget pretium. In
+                  imperdiet lectus ante, a molestie lacus viverra vitae. Sed
+                  condimentum elit sed nisl consectetur iaculis. Proin hendrerit
+                  enim justo, nec mattis orci malesuada ac. Praesent dignissim
+                  dapibus tempus.
+                </p>
                 <h2 id="getting-started">Getting Started</h2>
                 <p>Start by installing the module</p>
                 <pre>
