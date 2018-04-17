@@ -1,5 +1,6 @@
 import Typography from 'typography';
 import sutroTheme from 'typography-theme-sutro';
+import CodePlugin from 'typography-plugin-code';
 
 sutroTheme.googleFonts[0] = { ...sutroTheme.googleFonts[1], name: 'Rubik' };
 sutroTheme.headerFontFamily[0] = 'Rubik';
@@ -9,6 +10,8 @@ sutroTheme.googleFonts[1] = {
   name: 'Lato',
 };
 sutroTheme.bodyFontFamily[0] = 'Lato';
+
+sutroTheme.plugins = [new CodePlugin()];
 
 const typography = new Typography(sutroTheme);
 
