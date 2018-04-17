@@ -167,7 +167,7 @@ module.exports = {
     sm: '576px',
     md: '768px',
     lg: '992px',
-    xl: '1200px',
+    xl: '992px',
   },
 
   /*
@@ -655,6 +655,8 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '12': '3rem',
+    '16': '4rem',
   },
 
   /*

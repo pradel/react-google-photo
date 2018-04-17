@@ -62,7 +62,7 @@ class IndexPage extends React.Component<{}, {}> {
   render() {
     const { open, index } = this.state;
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-16">
         <div className="flex">
           <div className="w-1/6">
             <Menu>
@@ -86,11 +86,14 @@ class IndexPage extends React.Component<{}, {}> {
           </div>
           <div className="w-5/6">
             <div className="pb-8 flex">
-              <div className="markdown-body mt-8">
+              <div className="markdown-body">
                 <h2 id="getting-started">Getting Started</h2>
                 <p>Start by installing the module</p>
                 <pre>
-                  <code>yarn add react-google-photo</code>
+                  <code>
+                    yarn add react-google-photo # OR with npm npm install
+                    react-google-photo
+                  </code>
                 </pre>
 
                 <h3 id="examples">Examples</h3>

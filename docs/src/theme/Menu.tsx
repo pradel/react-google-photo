@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export const Menu: React.SFC = ({ ...props }) => (
-  <div className="mt-8" {...props} />
+  <div className="" {...props} />
 );
 
 export const MenuLabel: React.SFC = ({ ...props }) => (
