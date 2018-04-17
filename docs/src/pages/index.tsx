@@ -46,7 +46,7 @@ class IndexPage extends React.Component<Props, {}> {
           </div>
           <div className="lg:w-5/6">
             <div className="pb-8 flex">
-              <div className="w-100">
+              <div className="w-100 markdown-content">
                 <div dangerouslySetInnerHTML={{ __html: page.html }} />
 
                 <Example />

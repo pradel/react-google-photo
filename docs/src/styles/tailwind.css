@@ -34,6 +34,11 @@ ul {
   @apply .list-reset;
 }
 
+.markdown-content h1:first-child,
+.markdown-content h2:first-child {
+  margin-top: 0;
+}
+
 @tailwind components;
 
 @tailwind utilities;
