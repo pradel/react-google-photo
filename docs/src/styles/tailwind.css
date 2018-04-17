@@ -35,6 +35,10 @@ ul {
   @apply .list-reset;
 }
 
+.markdown-content {
+  max-width: 100%;
+}
+
 .markdown-content h1:first-child,
 .markdown-content h2:first-child {
   margin-top: 0;
