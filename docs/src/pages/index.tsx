@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Gallery from 'react-photo-gallery';
-import GooglePhoto from '../../../lib/index';
 import {
   Menu,
   MenuLabel,
@@ -8,69 +6,15 @@ import {
   MenuListItem,
   MenuListItemA,
 } from '../theme';
-
-// https://unsplash.com/collections/589374/textures
-const images = [
-  {
-    src:
-      'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 1500,
-    height: 1000,
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1509641498745-13c26fd1ed89?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 666,
-    height: 1000,
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1491146179969-d674118945ff?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 1500,
-    height: 844,
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1486231328412-f20a348f9837?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 749,
-    height: 1000,
-  },
-];
+import { Example } from '../components/Example';
 
 interface Props {
   data: any;
 }
 
-interface State {
-  index: number;
-  open: boolean;
-}
-
-class IndexPage extends React.Component<Props, State> {
-  state = {
-    index: 0,
-    open: false,
-  };
-
-  handleClickPrev = () => {
-    this.setState({ index: this.state.index - 1 });
-  };
-
-  handleClickNext = () => {
-    this.setState({ index: this.state.index + 1 });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleClickGallery = (e: any, data: any) => {
-    this.setState({ open: true, index: data.index });
-  };
-
+class IndexPage extends React.Component<Props, {}> {
   render() {
     const { data } = this.props;
-    const { open, index } = this.state;
     const page = data.allMarkdownRemark.edges[0].node;
     console.log(page);
     return (
@@ -106,15 +50,7 @@ class IndexPage extends React.Component<Props, State> {
               <div className="markdown-body w-100">
                 <div dangerouslySetInnerHTML={{ __html: page.html }} />
 
-                <Gallery photos={images} onClick={this.handleClickGallery} />
-                <GooglePhoto
-                  open={open}
-                  src={images}
-                  srcIndex={index}
-                  onClickPrev={this.handleClickPrev}
-                  onClickNext={this.handleClickNext}
-                  onClose={this.handleClose}
-                />
+                <Example />
               </div>
             </div>
           </div>
