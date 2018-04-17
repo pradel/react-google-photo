@@ -63,8 +63,8 @@ class IndexPage extends React.Component<{}, {}> {
     const { open, index } = this.state;
     return (
       <div className="container mx-auto mt-16">
-        <div className="flex">
-          <div className="w-1/6">
+        <div className="flex flex-col lg:flex-row">
+          <div className="lg:w-1/6">
             <Menu>
               <MenuList>
                 <MenuListItem>
@@ -87,9 +87,9 @@ class IndexPage extends React.Component<{}, {}> {
               </MenuList>
             </Menu>
           </div>
-          <div className="w-5/6">
+          <div className="lg:w-5/6">
             <div className="pb-8 flex">
-              <div className="markdown-body">
+              <div className="markdown-body w-100">
                 <h2 id="introduction">Introduction</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
