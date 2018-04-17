@@ -9,7 +9,7 @@ export const MenuLabel: React.SFC = ({ ...props }) => (
 );
 
 export const MenuList: React.SFC = ({ ...props }) => (
-  <ul className="menu-list" {...props} />
+  <ul className="list-reset" {...props} />
 );
 
 export const MenuListItem: React.SFC = ({ ...props }) => (

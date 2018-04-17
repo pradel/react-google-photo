@@ -30,11 +30,6 @@ a:hover {
   text-decoration: none;
 }
 
-ol,
-ul {
-  @apply .list-reset;
-}
-
 .markdown-content {
   max-width: 100%;
 }
