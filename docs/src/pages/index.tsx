@@ -64,7 +64,7 @@ class IndexPage extends React.Component<{}, {}> {
     return (
       <div className="container mx-auto">
         <div className="flex">
-          <div className="w-1/4">
+          <div className="w-1/6">
             <Menu>
               <MenuList>
                 <MenuListItem>
@@ -84,7 +84,7 @@ class IndexPage extends React.Component<{}, {}> {
               </MenuList>
             </Menu>
           </div>
-          <div className="w-3/4">
+          <div className="w-5/6">
             <div className="pb-8 flex">
               <div className="markdown-body mt-8">
                 <h2 id="getting-started">Getting Started</h2>

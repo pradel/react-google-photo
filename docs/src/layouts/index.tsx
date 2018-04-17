@@ -3,7 +3,10 @@ import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import 'github-markdown-css/github-markdown.css';
 import '../styles/tailwind-generated.css';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+
+const projectName = 'react-responsive-modal';
 
 const IndexLayout: React.SFC = ({ children }: any) => (
   <React.Fragment>
@@ -20,6 +23,7 @@ const IndexLayout: React.SFC = ({ children }: any) => (
         className: 'font-normal text-black leading-normal',
       }}
     />
+    <Header projectName={projectName} />
     {children()}
     {/* <Footer /> */}
   </React.Fragment>
