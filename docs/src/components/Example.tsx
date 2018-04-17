@@ -22,12 +22,6 @@ const images = [
     width: 1500,
     height: 844,
   },
-  {
-    src:
-      'https://images.unsplash.com/photo-1486231328412-f20a348f9837?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 749,
-    height: 1000,
-  },
 ];
 
 interface State {
