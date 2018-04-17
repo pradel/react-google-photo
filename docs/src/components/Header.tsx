@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Header: React.SFC<Props> = ({ projectName }) => (
-  <div className="flex bg-white border-b border-grey-lighter h-16 items-center">
+  <div className="flex bg-white border-b border-solid border-grey-lighter h-16 items-center">
     <div className="container mx-auto">
       <div className="flex justify-between">
         <div className="flex items-center">
@@ -16,7 +16,7 @@ export const Header: React.SFC<Props> = ({ projectName }) => (
             href={`https://github.com/pradel/${projectName}/releases`}
             className="text-grey text-lg"
           >
-            v3.0.0
+            {projectName} v3.0.0
           </a>
         </div>
         <div className="flex items-center">

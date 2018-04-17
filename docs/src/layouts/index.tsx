@@ -1,13 +1,11 @@
 import * as React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
-import 'github-markdown-css/github-markdown.css';
+import 'prismjs/themes/prism-solarizedlight.css';
 import '../styles/tailwind-generated.css';
-require(`prismjs/themes/prism-solarizedlight.css`);
 import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
 
-const projectName = 'react-responsive-modal';
+const projectName = 'react-google-photo';
 
 const IndexLayout: React.SFC = ({ children }: any) => (
   <React.Fragment>
@@ -18,15 +16,14 @@ const IndexLayout: React.SFC = ({ children }: any) => (
         { name: 'keywords', content: 'react, lightbox, google, photo' },
       ]}
       htmlAttributes={{
-        className: 'bg-white antialiased',
+        class: 'bg-white antialiased',
       }}
       bodyAttributes={{
-        className: 'font-normal text-black leading-normal',
+        class: 'text-black',
       }}
     />
     <Header projectName={projectName} />
     {children()}
-    {/* <Footer /> */}
   </React.Fragment>
 );
 

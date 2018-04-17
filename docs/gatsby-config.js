@@ -9,6 +9,12 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
     {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages/`,

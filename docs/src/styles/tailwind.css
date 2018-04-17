@@ -1,7 +1,27 @@
-@tailwind preflight;
+/**
+ * --------------------------
+ * From @tailwind preflight;
+ */
+
+*,
+*::before,
+*::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: config('borderColors.default', currentColor);
+}
+
+img {
+  border-style: solid;
+}
+
+/**
+ * --------------------------
+ * End @tailwind preflight;
+ */
 
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 a {
