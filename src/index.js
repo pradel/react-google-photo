@@ -231,6 +231,21 @@ class GooglePhoto extends Component {
   }
 }
 
+const GooglePhotoSrc = PropTypes.shape({
+  /**
+   * Url of the media
+   */
+  src: PropTypes.string.isRequired,
+  /**
+   * Height of the media
+   */
+  height: PropTypes.number.isRequired,
+  /**
+   * Width of the media
+   */
+  width: PropTypes.number.isRequired,
+});
+
 GooglePhoto.propTypes = {
   /**
    * Control if GooglePhoto is open or not
@@ -239,22 +254,7 @@ GooglePhoto.propTypes = {
   /**
    * An array containing valid images
    */
-  src: PropTypes.arrayOf(
-    PropTypes.shape({
-      /**
-       * Url of the media
-       */
-      src: PropTypes.string.isRequired,
-      /**
-       * Height of the media
-       */
-      height: PropTypes.number.isRequired,
-      /**
-       * Width of the media
-       */
-      width: PropTypes.number.isRequired,
-    })
-  ).isRequired,
+  src: PropTypes.arrayOf(GooglePhotoSrc).isRequired,
   /**
    * Index of source to display
    */
@@ -268,15 +268,15 @@ GooglePhoto.propTypes = {
    */
   keyboardNavigation: PropTypes.bool,
   /**
-   * The duration of the transition, in milliseconds
-   * https://reactcommunity.org/react-transition-group/#Transition-prop-timeout
+   * The duration of the transition, in milliseconds see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition-prop-timeout)
    */
   transitionDuration: PropTypes.number,
   /**
-   * The animation object see https://reactcommunity.org/react-transition-group/#Transition
+   * The animation object see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition)
    * Add a default key to still the default style
    */
-  transitionStyles: PropTypes.object, // eslint-disable-line
+  // eslint-disable-next-line
+  transitionStyles: PropTypes.object,
   /**
    * Should open on fullscreen mode
    */
@@ -300,7 +300,8 @@ GooglePhoto.propTypes = {
   /**
    * Object of classes to style the element
    */
-  classes: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line
+  classes: PropTypes.object.isRequired,
 };
 
 GooglePhoto.defaultProps = {

@@ -78,12 +78,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@wertarbyte/react-props-md-table@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@wertarbyte/react-props-md-table/-/react-props-md-table-1.1.1.tgz#bec709ac35c168f4d242ec550296976800638102"
-  dependencies:
-    react-docgen "^2.18.0"
-
 abab@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -3606,7 +3600,7 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-docgen@^2.18.0:
+react-docgen@^2.20.1:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-2.20.1.tgz#29c3a1216066f513958abb1a43678860bbd51c7f"
   dependencies:
