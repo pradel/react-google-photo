@@ -85,16 +85,29 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 ## Options
 
-| Property           |   Type   | Default | Description                                                                      |
-| ------------------ | :------: | :-----: | -------------------------------------------------------------------------------- |
-| **open\***         | Boolean  |         | Control if GooglePhoto is open or not                                            |
-| **src\***          | Array[]  |         | An array containing valid images                                                 |
-| **srcIndex\***     |  Number  |         | Index of source to display                                                       |
-| closeOnEsc         | Boolean  |  true   | Is closable when user press esc key                                              |
-| keyboardNavigation | Boolean  |  true   | Enable left and right arrow navigation                                           |
-| fullscreen         | Boolean  |  false  | Should open on fullscreen mode                                                   |
-| mouseIdleTimeout   |  Number  |  5000   | Timeout before hidding the actions buttons when mouse do not move (milliseconds) |
-| **onClickPrev\***  | Function |         | Function called when the previous image is requested                             |
-| **onClickNext\***  | Function |         | Function called when the next image is requested                                 |
-| **onClose\***      | Function |         | Function called when GooglePhoto is requested to be closed                       |
-| **classes\***      |  Object  |         | Object of classes to style the element                                           |
+### GooglePhoto
+
+| Name                                         | Type                      | Default | Description                                                                                                                                                   |
+| -------------------------------------------- | ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **open\***                                   | `bool`                    |         | Control if GooglePhoto is open or not                                                                                                                         |
+| **src\***                                    | `arrayOf[GooglePhotoSrc]` |         | An array containing valid images                                                                                                                              |
+| **srcIndex\***                               | `number`                  |         | Index of source to display                                                                                                                                    |
+| closeOnEsc                                   | `bool`                    | `true`  | Is closable when user press esc key                                                                                                                           |
+| keyboardNavigation                           | `bool`                    | `true`  | Enable left and right arrow navigation                                                                                                                        |
+| transitionDuration                           | `number`                  | `200`   | The duration of the transition, in milliseconds see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition-prop-timeout) |
+| transitionStyles                             | `object`                  |         | The animation object see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition)                                         |
+| Add a default key to still the default style |
+| fullscreen                                   | `bool`                    | `false` | Should open on fullscreen mode                                                                                                                                |
+| mouseIdleTimeout                             | `number`                  | `5000`  | Timeout before hidding the actions buttons when mouse do not move (milliseconds)                                                                              |
+| **onClickPrev\***                            | `func`                    |         | Function called when the previous image is requested                                                                                                          |
+| **onClickNext\***                            | `func`                    |         | Function called when the next image is requested                                                                                                              |
+| **onClose\***                                | `func`                    |         | Function called when GooglePhoto is requested to be closed                                                                                                    |
+| **classes\***                                | `object`                  |         | Object of classes to style the element                                                                                                                        |
+
+### GooglePhotoSrc
+
+| Name         | Type     | Default | Description         |
+| ------------ | -------- | ------- | ------------------- |
+| **src\***    | `string` |         | Url of the media    |
+| **height\*** | `number` |         | Height of the media |
+| **width\***  | `number` |         | Width of the media  |  |

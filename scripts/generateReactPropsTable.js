@@ -66,6 +66,13 @@ function formatDefaultValue(type, defaultValue) {
   }
 }
 
+function formatName(name, required) {
+  if (required) {
+    return `**${name}***`;
+  }
+  return name;
+}
+
 function formatHeader() {
   const headers = ['Name', 'Type', 'Default', 'Description'];
   markdown += `|${headers.join('|')}|\n`;
@@ -76,7 +83,7 @@ function formatProps(props) {
   props = Object.entries(props).map(
     ([name, { type, required, description, defaultValue }]) => {
       return {
-        name: `${name}${required ? '*' : ''}`,
+        name: formatName(name, required),
         defaultValue: formatDefaultValue(type, defaultValue),
         type: `\`${formatType(name, type)}\``,
         description,
