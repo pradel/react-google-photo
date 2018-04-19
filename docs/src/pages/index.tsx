@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as rehypeReact from 'rehype-react';
 import {
   Menu,
   MenuLabel,
@@ -7,6 +8,11 @@ import {
   MenuListItemA,
 } from '../theme';
 import { Example } from '../components/Example';
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { 'example-basic': Example },
+}).Compiler;
 
 interface Props {
   data: any;
@@ -47,9 +53,7 @@ class IndexPage extends React.Component<Props, {}> {
           <div className="lg:w-5/6 px-4">
             <div className="flex">
               <div className="w-100 markdown-content">
-                <div dangerouslySetInnerHTML={{ __html: page.html }} />
-
-                <Example />
+                {renderAst(page.htmlAst)}
               </div>
             </div>
           </div>
@@ -66,7 +70,7 @@ export const pageQuery = graphql`
     allMarkdownRemark {
       edges {
         node {
-          html
+          htmlAst
         }
       }
     }

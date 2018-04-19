@@ -66,4 +66,4 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 ## Examples
 
-TODO
+<example-basic></example-basic>
