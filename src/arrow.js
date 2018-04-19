@@ -1,12 +1,7 @@
-// @flow
+import React from 'react';
 
-import * as React from 'react';
-
-type Props = {
-  className: string,
-};
-
-export function CloseArrow({ className, ...props }: Props) {
+// eslint-disable-next-line react/prop-types
+export function CloseArrow({ className, ...props }) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="24px" height="24px" viewBox="0 0 24 24">
@@ -16,7 +11,8 @@ export function CloseArrow({ className, ...props }: Props) {
   );
 }
 
-export function PrevArrowButton({ className, ...props }: Props) {
+// eslint-disable-next-line react/prop-types
+export function PrevArrowButton({ className, ...props }) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="36px" height="36px" viewBox="0 0 24 24">
@@ -26,7 +22,8 @@ export function PrevArrowButton({ className, ...props }: Props) {
   );
 }
 
-export function NextArrowButton({ className, ...props }: Props) {
+// eslint-disable-next-line react/prop-types
+export function NextArrowButton({ className, ...props }) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="36px" height="36px" viewBox="0 0 24 24">

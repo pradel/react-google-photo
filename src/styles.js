@@ -1,5 +1,3 @@
-// @flow
-
 export default {
   overlay: {
     position: 'fixed',

@@ -3,13 +3,11 @@
   "version": "0.0.1",
   "main": "lib/index.js",
   "scripts": {
-    "flow": "flow status",
     "build": "babel src --out-dir lib",
-    "prepublish": "yarn run build",
+    "prepublish": "yarn build",
     "lint": "eslint 'src' 'docs/src'",
-    "test": "yarn lint && yarn flow && yarn build",
-    "prettier":
-      "prettier --write \"src/**/*.{js,ts,tsx}\" \"docs/src/**/*.{js,ts,tsx,css,scss,json}\"",
+    "test": "yarn lint && yarn build",
+    "prettier": "prettier --write \"**/*.{js,ts,tsx,css,scss,json,md}\"",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -34,16 +32,16 @@
     "@wertarbyte/react-props-md-table": "^1.1.1",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "eslint": "^4.19.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.7.0",
-    "flow-bin": "^0.69.0",
+    "eslint-plugin-react": "^7.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.2",
     "prettier": "^1.11.1",
@@ -52,8 +50,16 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "plugins": ["flowtype", "prettier"],
-    "extends": ["prettier", "plugin:flowtype/recommended"],
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "plugins": ["prettier"],
+    "rules": {
+      "react/jsx-filename-extension": 0,
+      "import/no-extraneous-dependencies": 0,
+      "react/no-array-index-key": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "jsx-a11y/anchor-is-valid": 0
+    },
     "env": {
       "browser": true
     }

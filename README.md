@@ -8,15 +8,16 @@ react-google-photo is a responsive lightbox React Component for displaying photo
 
 You can find a demo [here](https://react-google-photo.leopradel.com/).
 
-
 ## Installation
 
 With npm:
+
 ```
 npm install react-google-photo --save
 ```
 
 Or with yarn:
+
 ```
 yarn add react-google-photo
 ```
@@ -84,16 +85,16 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 ## Options
 
-Property | Type | Default | Description
----- | :----: | :-------: | -----------
-**open*** | Boolean |  | Control if GooglePhoto is open or not
-**src*** | Array[] |  | An array containing valid images
-**srcIndex*** | Number |  | Index of source to display
-closeOnEsc | Boolean | true | Is closable when user press esc key
-keyboardNavigation | Boolean | true | Enable left and right arrow navigation
-fullscreen | Boolean | false | Should open on fullscreen mode
-mouseIdleTimeout | Number | 5000 | Timeout before hidding the actions buttons when mouse do not move (milliseconds)
-**onClickPrev*** | Function |  | Function called when the previous image is requested
-**onClickNext*** | Function |  | Function called when the next image is requested
-**onClose*** | Function |  | Function called when GooglePhoto is requested to be closed
-**classes*** | Object |  | Object of classes to style the element
+| Property           |   Type   | Default | Description                                                                      |
+| ------------------ | :------: | :-----: | -------------------------------------------------------------------------------- |
+| **open\***         | Boolean  |         | Control if GooglePhoto is open or not                                            |
+| **src\***          | Array[]  |         | An array containing valid images                                                 |
+| **srcIndex\***     |  Number  |         | Index of source to display                                                       |
+| closeOnEsc         | Boolean  |  true   | Is closable when user press esc key                                              |
+| keyboardNavigation | Boolean  |  true   | Enable left and right arrow navigation                                           |
+| fullscreen         | Boolean  |  false  | Should open on fullscreen mode                                                   |
+| mouseIdleTimeout   |  Number  |  5000   | Timeout before hidding the actions buttons when mouse do not move (milliseconds) |
+| **onClickPrev\***  | Function |         | Function called when the previous image is requested                             |
+| **onClickNext\***  | Function |         | Function called when the next image is requested                                 |
+| **onClose\***      | Function |         | Function called when GooglePhoto is requested to be closed                       |
+| **classes\***      |  Object  |         | Object of classes to style the element                                           |
