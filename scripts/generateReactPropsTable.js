@@ -8,6 +8,7 @@ const filename = args[args.length - 1];
 const content = fs.readFileSync(path.resolve(process.cwd(), filename), 'utf-8');
 
 const config = {
+  output: 'PROPS.md',
   shape: {
     src: {
       name: 'GooglePhotoSrc',
@@ -39,7 +40,7 @@ Object.keys(config.shape).map(name => {
 });
 
 // Write the file
-fs.writeFileSync('toto.md', markdown);
+fs.writeFileSync(config.output, markdown);
 
 function formatType(name, type) {
   if (type.name === 'union') {
