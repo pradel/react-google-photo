@@ -7,43 +7,48 @@ const args = process.argv.slice(1);
 const filename = args[args.length - 1];
 const content = fs.readFileSync(path.resolve(process.cwd(), filename), 'utf-8');
 
+const config = {
+  shape: {
+    src: {
+      name: 'GooglePhotoSrc',
+    },
+  },
+};
+
 let markdown = '';
 const component = reactDocs.parse(content);
 
-markdown += `### ${component.displayName} Props \n\n`;
+markdown += `### ${component.displayName}\n\n`;
 
-// console.log(component.props.transitionStyles);
+// Global Component
+formatHeader();
+formatProps(component.props);
 
-const props = Object.entries(component.props).map(
-  ([name, { type, required, description, defaultValue }]) => {
-    return {
-      name: `${name}${required ? '*' : ''}`,
-      defaultValue: formatDefaultValue(type, defaultValue),
-      type: `\`${formatType(type)}\``,
-      description,
-      required,
-    };
-  }
-);
+// Separate shape props
+Object.keys(config.shape).map(name => {
+  markdown += `\n### ${config.shape[name].name}\n\n`;
 
-// Header part
-const headers = ['Name', 'Type', 'Default', 'Description'];
-markdown += `|${headers.join('|')}|\n`;
-markdown += `|${headers.map(() => '---').join('|')}|\n`;
-
-// Props part
-for (const { name, defaultValue, type, description } of props) {
-  markdown += `|${name}|${type}|${defaultValue}|${description}|\n`;
-}
+  formatHeader();
+  const formatedProps = Object.keys(
+    component.props.src.type.value.value
+  ).forEach(name => {
+    const elem = component.props.src.type.value.value[name];
+    elem.type = { name: elem.name };
+  });
+  formatProps(component.props.src.type.value.value);
+});
 
 // Write the file
 fs.writeFileSync('toto.md', markdown);
 
-function formatType(type) {
+function formatType(name, type) {
   if (type.name === 'union') {
     return type.value.map(formatType).join('|');
   }
   if (type.name === 'arrayOf') {
+    if (type.value.name === 'shape') {
+      return `${type.name}[${config.shape[name].name}]`;
+    }
     return `${type.name}[${type.value.raw}]`;
   } else {
     return type.name;
@@ -57,5 +62,29 @@ function formatDefaultValue(type, defaultValue) {
     return `\`${defaultValue.value}\``;
   } else {
     return '';
+  }
+}
+
+function formatHeader() {
+  const headers = ['Name', 'Type', 'Default', 'Description'];
+  markdown += `|${headers.join('|')}|\n`;
+  markdown += `|${headers.map(() => '---').join('|')}|\n`;
+}
+
+function formatProps(props) {
+  props = Object.entries(props).map(
+    ([name, { type, required, description, defaultValue }]) => {
+      return {
+        name: `${name}${required ? '*' : ''}`,
+        defaultValue: formatDefaultValue(type, defaultValue),
+        type: `\`${formatType(name, type)}\``,
+        description,
+        required,
+      };
+    }
+  );
+
+  for (const { name, defaultValue, type, description } of props) {
+    markdown += `|${name}|${type}|${defaultValue}|${description}|\n`;
   }
 }

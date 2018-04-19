@@ -231,21 +231,6 @@ class GooglePhoto extends Component {
   }
 }
 
-const GooglePhotoSrc = PropTypes.shape({
-  /**
-   * Url of the media
-   */
-  src: PropTypes.string.isRequired,
-  /**
-   * Height of the media
-   */
-  height: PropTypes.number.isRequired,
-  /**
-   * Width of the media
-   */
-  width: PropTypes.number.isRequired,
-});
-
 GooglePhoto.propTypes = {
   /**
    * Control if GooglePhoto is open or not
@@ -254,7 +239,22 @@ GooglePhoto.propTypes = {
   /**
    * An array containing valid images
    */
-  src: PropTypes.arrayOf(GooglePhotoSrc).isRequired,
+  src: PropTypes.arrayOf(
+    PropTypes.shape({
+      /**
+       * Url of the media
+       */
+      src: PropTypes.string.isRequired,
+      /**
+       * Height of the media
+       */
+      height: PropTypes.number.isRequired,
+      /**
+       * Width of the media
+       */
+      width: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   /**
    * Index of source to display
    */
