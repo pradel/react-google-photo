@@ -13,12 +13,12 @@ You can find a demo [here](https://react-google-photo.leopradel.com/).
 
 With npm:
 ```
-npm install react-responsive-modal --save
+npm install react-google-photo --save
 ```
 
 Or with yarn:
 ```
-yarn add react-responsive-modal
+yarn add react-google-photo
 ```
 
 ## Usage
