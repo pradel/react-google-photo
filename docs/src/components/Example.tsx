@@ -64,6 +64,9 @@ export class Example extends React.Component<{}, State> {
           onClickNext={this.handleClickNext}
           onClose={this.handleClose}
         />
+        <a href="https://github.com/pradel/react-google-photo/blob/master/docs/src/components/Example.tsx">
+          Source code
+        </a>
       </React.Fragment>
     );
   }
