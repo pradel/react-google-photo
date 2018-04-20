@@ -29,26 +29,26 @@ class IndexPage extends React.Component<Props, {}> {
             <Menu>
               <MenuList>
                 <MenuListItem>
-                  <MenuListItemLink href="#introduction">
+                  <MenuListItemLink to="#introduction">
                     Introduction
                   </MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemLink href="#getting-started">
+                  <MenuListItemLink to="#getting-started">
                     Getting started
                   </MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemLink href="#usage">Usage</MenuListItemLink>
+                  <MenuListItemLink to="#usage">Usage</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemLink href="#examples">Examples</MenuListItemLink>
+                  <MenuListItemLink to="#examples">Examples</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemLink href="#options">Options</MenuListItemLink>
+                  <MenuListItemLink to="#options">Options</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemLink href="#license">License</MenuListItemLink>
+                  <MenuListItemLink to="#license">License</MenuListItemLink>
                 </MenuListItem>
               </MenuList>
             </Menu>
