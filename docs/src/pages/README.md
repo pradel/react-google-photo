@@ -74,7 +74,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 ## Options
 
-[comment]: <> (--begin-insert-props--)
+<!-- --begin-insert-props-- -->
 
 ### GooglePhoto
 
@@ -102,4 +102,4 @@ ReactDOM.render(<App />, document.getElementById('app'));
 | **height\*** | `number` |         | Height of the media |
 | **width\***  | `number` |         | Width of the media  |
 
-[comment]: <> (--end-insert-props--)
+<!-- --end-insert-props-- -->

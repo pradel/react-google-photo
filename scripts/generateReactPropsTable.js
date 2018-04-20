@@ -17,10 +17,10 @@ const config = {
 };
 
 if (!config.propsCommentBegin) {
-  config.propsCommentBegin = '[comment]: <> (--begin-insert-props--)';
+  config.propsCommentBegin = '<!-- --begin-insert-props-- -->';
 }
 if (!config.propsCommentEnd) {
-  config.propsCommentEnd = '[comment]: <> (--end-insert-props--)';
+  config.propsCommentEnd = '<!-- --end-insert-props-- -->';
 }
 
 let markdown = '';
