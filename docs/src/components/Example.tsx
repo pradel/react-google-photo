@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import Gallery from 'react-photo-gallery';
-import GooglePhoto from '../../../src/index';
+import GooglePhoto from 'react-google-photo';
 
 // https://unsplash.com/collections/589374/textures
 const images = [
@@ -22,15 +22,14 @@ const images = [
     width: 1500,
     height: 844,
   },
-  {
-    src:
-      'https://images.unsplash.com/photo-1486231328412-f20a348f9837?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
-    width: 749,
-    height: 1000,
-  },
 ];
 
-class IndexPage extends React.Component {
+interface State {
+  index: number;
+  open: boolean;
+}
+
+export class Example extends React.Component<{}, State> {
   state = {
     index: 0,
     open: false,
@@ -48,14 +47,14 @@ class IndexPage extends React.Component {
     this.setState({ open: false });
   };
 
-  handleClickGallery = (e, data) => {
+  handleClickGallery = (e: any, data: any) => {
     this.setState({ open: true, index: data.index });
   };
 
   render() {
     const { open, index } = this.state;
     return (
-      <div>
+      <React.Fragment>
         <Gallery photos={images} onClick={this.handleClickGallery} />
         <GooglePhoto
           open={open}
@@ -65,9 +64,7 @@ class IndexPage extends React.Component {
           onClickNext={this.handleClickNext}
           onClose={this.handleClose}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }
-
-export default IndexPage;

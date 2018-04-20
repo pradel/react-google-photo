@@ -268,15 +268,14 @@ GooglePhoto.propTypes = {
    */
   keyboardNavigation: PropTypes.bool,
   /**
-   * The duration of the transition, in milliseconds
-   * https://reactcommunity.org/react-transition-group/#Transition-prop-timeout
+   * The duration of the transition, in milliseconds see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition-prop-timeout)
    */
   transitionDuration: PropTypes.number,
   /**
-   * The animation object see https://reactcommunity.org/react-transition-group/#Transition
-   * Add a default key to still the default style
+   * The animation object see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition)
    */
-  transitionStyles: PropTypes.object, // eslint-disable-line
+  // eslint-disable-next-line
+  transitionStyles: PropTypes.object,
   /**
    * Should open on fullscreen mode
    */
@@ -300,7 +299,8 @@ GooglePhoto.propTypes = {
   /**
    * Object of classes to style the element
    */
-  classes: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line
+  classes: PropTypes.object.isRequired,
 };
 
 GooglePhoto.defaultProps = {
