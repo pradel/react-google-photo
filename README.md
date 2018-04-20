@@ -7,7 +7,7 @@ react-google-photo is a responsive lightbox React Component for displaying photo
 
 ## Docs and examples
 
-You can find the docs [here](https://react-google-photo.leopradel.com/).
+You can find the docs and live examples [here](https://react-google-photo.leopradel.com/).
 
 ## Installation
 
