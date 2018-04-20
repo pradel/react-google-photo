@@ -27,49 +27,63 @@ class GooglePhoto extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeydown);
-    window.addEventListener('resize', this.handleWindowResize);
-    document
-      .querySelector('*')
-      .addEventListener('mousemove', this.handleMousemove);
     if (this.props.open) {
-      noScroll.on();
+      this.handleOpen();
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.open && nextProps.open) {
-      noScroll.on();
+      this.handleOpen();
       this.setState({ showPortal: true });
-      if (this.props.fullscreen && screenfull.enabled) {
-        screenfull.request();
-      }
     }
     if (this.props.open && !nextProps.open) {
-      noScroll.off();
+      this.handleClose();
     }
   }
 
   componentWillUnmount() {
+    if (this.props.open) {
+      this.handleClose();
+    }
+  }
+
+  handleOpen = () => {
+    document.addEventListener('keydown', this.handleKeydown);
+    window.addEventListener('resize', this.handleWindowResize);
+    document
+      .querySelector('*')
+      .addEventListener('mousemove', this.handleMousemove);
+    noScroll.on();
+    if (this.props.fullscreen && screenfull.enabled) {
+      screenfull.request();
+      screenfull.on('change', this.handleScreenfullChange);
+    }
+  };
+
+  handleClose = () => {
     document.removeEventListener('keydown', this.handleKeydown);
     window.removeEventListener('resize', this.handleWindowResize);
     document
       .querySelector('*')
       .removeEventListener('mousemove', this.handleMousemove);
+    screenfull.off('change', this.handleScreenfullChange);
     noScroll.off();
-  }
+  };
 
   handleWindowResize = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
 
   handleKeydown = e => {
+    console.log('handleKeydown');
     if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
       this.handleClickPrev();
     } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
       this.handleClickNext();
     } else if (e.keyCode === keycodes.esc && this.props.closeOnEsc) {
       this.handleClose();
+      this.props.onClose();
     }
   };
 
@@ -84,6 +98,12 @@ class GooglePhoto extends Component {
     }, this.props.mouseIdleTimeout);
   };
 
+  handleScreenfullChange = () => {
+    if (!screenfull.isFullscreen && this.props.open) {
+      this.props.onClose();
+    }
+  };
+
   handleClickPrev = () => {
     if (this.props.srcIndex !== 0) {
       this.props.onClickPrev();
@@ -96,7 +116,7 @@ class GooglePhoto extends Component {
     }
   };
 
-  handleClose = () => {
+  handleClickCloseArrow = () => {
     this.props.onClose();
   };
 
@@ -221,7 +241,7 @@ class GooglePhoto extends Component {
                 className={cx(classes.arrowButtonReturn, {
                   [classes.arrowButtonHide]: mouseIdle,
                 })}
-                onClick={this.handleClose}
+                onClick={this.handleClickCloseArrow}
               />
             </div>
           )}

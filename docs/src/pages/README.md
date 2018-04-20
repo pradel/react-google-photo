@@ -70,7 +70,13 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 > The gallery is using the [react-photo-gallery](https://www.npmjs.com/package/react-photo-gallery) npm package
 
+### Basic example
+
 <example-basic></example-basic>
+
+### Fullscreen example
+
+<example-fullscreen></example-fullscreen>
 
 ## Options
 

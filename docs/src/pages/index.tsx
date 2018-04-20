@@ -2,10 +2,14 @@ import * as React from 'react';
 import * as rehypeReact from 'rehype-react';
 import { withPage } from '../theme';
 import { Example } from '../components/Example';
+import { ExampleFullScreen } from '../components/ExampleFullScreen';
 
 const renderAst = new rehypeReact({
   createElement: React.createElement,
-  components: { 'example-basic': Example },
+  components: {
+    'example-basic': Example,
+    'example-fullscreen': ExampleFullScreen,
+  },
 }).Compiler;
 
 const config = {
