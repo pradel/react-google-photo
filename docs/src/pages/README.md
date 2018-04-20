@@ -103,3 +103,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 | **width\***  | `number` |         | Width of the media  |
 
 <!-- --end-insert-props-- -->
+
+## License
+
+MIT © [Léo Pradel](https://www.leopradel.com/)

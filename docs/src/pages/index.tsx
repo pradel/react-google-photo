@@ -47,6 +47,9 @@ class IndexPage extends React.Component<Props, {}> {
                 <MenuListItem>
                   <MenuListItemA href="#options">Options</MenuListItemA>
                 </MenuListItem>
+                <MenuListItem>
+                  <MenuListItemA href="#license">License</MenuListItemA>
+                </MenuListItem>
               </MenuList>
             </Menu>
           </div>

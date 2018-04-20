@@ -87,3 +87,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ## Options
 
 You can find the options [here](https://react-google-photo.leopradel.com/#options).
+
+## License
+
+MIT © [Léo Pradel](https://www.leopradel.com/)
