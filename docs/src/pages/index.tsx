@@ -5,7 +5,7 @@ import {
   MenuLabel,
   MenuList,
   MenuListItem,
-  MenuListItemA,
+  MenuListItemLink,
 } from '../theme';
 import { Example } from '../components/Example';
 
@@ -29,26 +29,26 @@ class IndexPage extends React.Component<Props, {}> {
             <Menu>
               <MenuList>
                 <MenuListItem>
-                  <MenuListItemA href="#introduction">
+                  <MenuListItemLink href="#introduction">
                     Introduction
-                  </MenuListItemA>
+                  </MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#getting-started">
+                  <MenuListItemLink href="#getting-started">
                     Getting started
-                  </MenuListItemA>
+                  </MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#usage">Usage</MenuListItemA>
+                  <MenuListItemLink href="#usage">Usage</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#examples">Examples</MenuListItemA>
+                  <MenuListItemLink href="#examples">Examples</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#options">Options</MenuListItemA>
+                  <MenuListItemLink href="#options">Options</MenuListItemLink>
                 </MenuListItem>
                 <MenuListItem>
-                  <MenuListItemA href="#license">License</MenuListItemA>
+                  <MenuListItemLink href="#license">License</MenuListItemLink>
                 </MenuListItem>
               </MenuList>
             </Menu>

@@ -1,1 +1,8 @@
-export { Menu, MenuLabel, MenuList, MenuListItem, MenuListItemA } from './Menu';
+export {
+  Menu,
+  MenuLabel,
+  MenuList,
+  MenuListItem,
+  MenuListItemA,
+  MenuListItemLink,
+} from './Menu';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'gatsby-link';
 
 export const Menu: React.SFC = ({ ...props }) => (
   <div className="" {...props} />
@@ -20,6 +21,17 @@ interface MenuListItemAProps {
   href: string;
 }
 
-export const MenuListItemA: React.SFC<MenuListItemAProps> = ({ ...props }) => (
-  <a className="text-grey-darker hover:text-teal" {...props} />
+export const MenuListItemA: React.SFC<MenuListItemAProps> = ({
+  href,
+  ...props
+}) => (
+  <Link className="text-grey-darker hover:text-teal" {...props} to={href} />
 );
+
+interface MenuListItemProps {
+  to: string;
+}
+
+export const MenuListItemLink: React.SFC<MenuListItemProps> = ({
+  ...props
+}) => <Link className="text-grey-darker hover:text-teal" {...props} />;
