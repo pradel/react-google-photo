@@ -273,7 +273,6 @@ GooglePhoto.propTypes = {
   transitionDuration: PropTypes.number,
   /**
    * The animation object see [react-transition-group docs](https://reactcommunity.org/react-transition-group/#Transition)
-   * Add a default key to still the default style
    */
   // eslint-disable-next-line
   transitionStyles: PropTypes.object,

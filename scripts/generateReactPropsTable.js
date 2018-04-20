@@ -8,13 +8,20 @@ const filename = args[args.length - 1];
 const content = fs.readFileSync(path.resolve(process.cwd(), filename), 'utf-8');
 
 const config = {
-  output: 'PROPS.md',
+  output: 'docs/src/pages/README.md',
   shape: {
     src: {
       name: 'GooglePhotoSrc',
     },
   },
 };
+
+if (!config.propsCommentBegin) {
+  config.propsCommentBegin = '[comment]: <> (--begin-insert-props--)';
+}
+if (!config.propsCommentEnd) {
+  config.propsCommentEnd = '[comment]: <> (--end-insert-props--)';
+}
 
 let markdown = '';
 const component = reactDocs.parse(content);
@@ -38,6 +45,13 @@ Object.keys(config.shape).map(name => {
   });
   formatProps(component.props.src.type.value.value);
 });
+
+const text = fs.readFileSync(config.output, 'utf8');
+
+const begin =
+  text.indexOf(config.propsCommentBegin) + config.propsCommentBegin.length + 1;
+const end = text.indexOf(config.propsCommentEnd);
+markdown = text.substring(0, begin) + markdown + text.substring(end);
 
 // Write the file
 fs.writeFileSync(config.output, markdown);

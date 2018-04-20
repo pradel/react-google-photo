@@ -8,6 +8,7 @@
     "lint": "eslint 'src' 'docs/src'",
     "test": "yarn lint && yarn build",
     "prettier": "prettier --write \"**/*.{js,ts,tsx,css,scss,json,md}\"",
+    "generate-props": "node scripts/generateReactPropsTable.js src/index.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
