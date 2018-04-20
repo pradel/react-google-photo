@@ -5,9 +5,10 @@ import { Github } from '../icons/Github';
 
 interface Props {
   projectName: string;
+  version: string;
 }
 
-export const Header: React.SFC<Props> = ({ projectName }) => (
+export const Header: React.SFC<Props> = ({ projectName, version }) => (
   <div className="flex bg-white border-b border-solid border-grey-lighter h-16 items-center fixed pin-t pin-x">
     <div className="container mx-auto px-4">
       <div className="flex justify-between">
@@ -16,7 +17,7 @@ export const Header: React.SFC<Props> = ({ projectName }) => (
             href={`https://github.com/pradel/${projectName}/releases`}
             className="text-grey text-lg hover:text-grey-darker"
           >
-            {projectName} v3.0.0
+            {projectName} v{version}
           </a>
         </div>
         <div className="flex items-center">
