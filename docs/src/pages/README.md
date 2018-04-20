@@ -66,6 +66,10 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 ## Examples
 
+> Photos from the [texture collection](https://unsplash.com/collections/589374/textures) on [Unsplash](https://unsplash.com/)
+
+> The gallery is using the [react-photo-gallery](https://www.npmjs.com/package/react-photo-gallery) npm package
+
 <example-basic></example-basic>
 
 ## Options

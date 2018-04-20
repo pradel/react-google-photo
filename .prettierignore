@@ -1,0 +1,3 @@
+docs/.cache
+docs/public
+docs/src/styles/tailwind-generated.css
