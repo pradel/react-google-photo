@@ -1,6 +1,7 @@
 # react-google-photo
 
 [![npm version](https://badge.fury.io/js/react-google-photo.svg)](https://badge.fury.io/js/react-google-photo)
+[![CircleCI](https://circleci.com/gh/pradel/react-google-photo.svg?style=shield)](https://circleci.com/gh/pradel/react-google-photo)
 
 react-google-photo is a responsive lightbox React Component for displaying photos that implements the google photo style.
 
