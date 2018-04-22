@@ -39,6 +39,10 @@ a:hover {
   margin-top: 0;
 }
 
+.markdown-content a {
+  text-decoration: underline;
+}
+
 @tailwind components;
 
 @tailwind utilities;
