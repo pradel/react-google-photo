@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "no-scroll": "^2.1.0",
+    "no-scroll": "^2.1.1",
     "prop-types": "^15.6.1",
     "react-jss": "^8.4.0",
-    "react-minimalist-portal": "^2.1.1",
-    "react-transition-group": "^2.3.0",
+    "react-minimalist-portal": "^2.2.0",
+    "react-transition-group": "^2.3.1",
     "screenfull": "^3.3.2"
   },
   "devDependencies": {
@@ -48,10 +48,10 @@
     "eslint-plugin-react": "^7.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.2",
-    "prettier": "^1.11.1",
-    "react": "^16.1.0",
+    "prettier": "^1.12.1",
+    "react": "^16.3.2",
     "react-docgen": "^2.20.1",
-    "react-dom": "^16.1.0",
+    "react-dom": "^16.3.2",
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-commonjs": "^9.1.3",
