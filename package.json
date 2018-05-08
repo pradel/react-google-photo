@@ -10,8 +10,12 @@
     "lint": "eslint 'src' 'docs/src'",
     "test": "yarn lint && yarn build",
     "prettier": "prettier --write \"**/*.{js,ts,tsx,css,scss,json,md}\"",
-    "generate-props": "node scripts/generateReactPropsTable.js src/index.js",
-    "precommit": "lint-staged"
+    "generate-props": "node scripts/generateReactPropsTable.js src/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,ts,tsx,json,css,scss}": ["prettier --write", "git add"]
@@ -45,7 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.4.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.2",
     "lint-staged": "^7.0.2",
     "prettier": "^1.12.1",
     "react": "^16.3.2",
