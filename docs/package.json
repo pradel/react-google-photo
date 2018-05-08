@@ -5,6 +5,7 @@
     "gatsby": "^1.9.251",
     "gatsby-link": "^1.6.40",
     "prismjs": "^1.14.0",
+    "react-google-photo": "link:..",
     "react-helmet": "^5.2.0",
     "react-photo-gallery": "^6.0.24",
     "styled-components": "^3.2.6",

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Gallery from 'react-photo-gallery';
-import GooglePhoto from 'react-google-photo';
+import * as GooglePhoto from 'react-google-photo';
 
 // https://unsplash.com/collections/589374/textures
 const images = [
