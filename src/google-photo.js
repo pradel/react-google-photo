@@ -75,7 +75,6 @@ export class GooglePhoto extends Component {
   };
 
   handleKeydown = e => {
-    console.log('handleKeydown');
     if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
       this.handleClickPrev();
     } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
