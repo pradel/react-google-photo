@@ -27,7 +27,6 @@
     "classnames": "^2.2.5",
     "no-scroll": "^2.1.1",
     "prop-types": "^15.6.1",
-    "react-jss": "^8.4.0",
     "react-minimalist-portal": "^2.2.0",
     "react-transition-group": "^2.3.1",
     "screenfull": "^3.3.2"

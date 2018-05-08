@@ -5,10 +5,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
     if (!current.resolve.alias) {
       current.resolve.alias = {};
     }
-    current.resolve.alias['react-google-photo'] = path.join(
-      __dirname,
-      '../lib/'
-    );
+    current.resolve.alias['react-google-photo'] = path.join(__dirname, '../');
     return current;
   });
 };
