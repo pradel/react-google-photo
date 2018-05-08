@@ -1,6 +1,7 @@
 {
   "name": "react-google-photo",
   "version": "0.0.2",
+  "description": "React lightbox component using the google photo style",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
   "jsnext:main": "lib/index.es.js",
@@ -20,6 +21,7 @@
   "lint-staged": {
     "*.{js,ts,tsx,json,css,scss}": ["prettier --write", "git add"]
   },
+  "files": ["src", "lib"],
   "repository": "https://github.com/pradel/react-google-photo.git",
   "author": "Pradel Léo <pradel.leo@gmail.com>",
   "license": "MIT",
