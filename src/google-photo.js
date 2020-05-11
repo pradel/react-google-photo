@@ -74,7 +74,7 @@ export class GooglePhoto extends Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
 
-  handleKeydown = e => {
+  handleKeydown = (e) => {
     if (e.keyCode === keycodes.left && this.props.keyboardNavigation) {
       this.handleClickPrev();
     } else if (e.keyCode === keycodes.right && this.props.keyboardNavigation) {
@@ -181,7 +181,7 @@ export class GooglePhoto extends Component {
           appear
           onExited={this.handleExited}
         >
-          {state => (
+          {(state) => (
             <div
               className={classes.overlay}
               style={{

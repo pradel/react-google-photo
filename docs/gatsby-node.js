@@ -1,7 +1,7 @@
 const path = require('path');
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
-  config.merge(current => {
+  config.merge((current) => {
     if (!current.resolve.alias) {
       current.resolve.alias = {};
     }

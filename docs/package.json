@@ -17,8 +17,7 @@
   "scripts": {
     "build": "yarn build:tailwind && yarn build:gatsby",
     "build:gatsby": "gatsby build",
-    "build:tailwind":
-      "postcss src/styles/tailwind.css -o src/styles/tailwind-generated.css",
+    "build:tailwind": "postcss src/styles/tailwind.css -o src/styles/tailwind-generated.css",
     "watch:tailwind": "yarn build:tailwind -w",
     "start": "yarn build:tailwind && gatsby develop"
   },
