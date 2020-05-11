@@ -78,3 +78,21 @@
   opacity: 1;
   transform: translateX(0px);
 }
+
+@keyframes react-google-photo-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes react-google-photo-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

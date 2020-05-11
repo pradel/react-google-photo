@@ -41,13 +41,7 @@ Hello, I'm a mdx file!
         <button className="button" onClick={() => setOpen(true)}>
           Open centered modal
         </button>
-        <GooglePhoto
-          open={open}
-          src={images}
-          srcIndex={index}
-          onChangeIndex={(newIndex) => setIndex(newIndex)}
-          onClose={() => setOpen(false)}
-        />
+        <GooglePhoto open={open} src={images} onClose={() => setOpen(false)} />
       </>
     );
   }}

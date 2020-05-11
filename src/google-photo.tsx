@@ -4,6 +4,7 @@ import noScroll from 'no-scroll';
 import cx from 'classnames';
 import screenfull from 'screenfull';
 import { CloseArrow, PrevArrowButton, NextArrowButton } from './arrow';
+import { useEventListener } from './useEventListener';
 
 const keycodes = {
   esc: 27,
@@ -23,9 +24,16 @@ const classes = {
   arrowButtonReturn: 'react-google-photo-arrow-button-return',
   image: 'react-google-photo-overlay-image',
   imageOpen: 'react-google-photo-overlay-image-open',
+  animationIn: 'react-google-photo-fade-in',
+  animationOut: 'react-google-photo-fade-out',
 };
 
 const isBrowser = typeof window !== 'undefined';
+
+enum Direction {
+  Prev,
+  Next,
+}
 
 interface SrcImage {
   /**
@@ -58,7 +66,7 @@ interface GooglePhotoProps {
   /**
    * Index of source to display.
    */
-  srcIndex: number;
+  // srcIndex?: number;
   /**
    * Should open on fullscreen mode.
    * Default to false.
@@ -80,26 +88,32 @@ interface GooglePhotoProps {
    */
   mouseIdleTimeout?: number;
   /**
+   * Animation duration in milliseconds.
+   * Default to 250.
+   */
+  animationDuration?: number;
+  /**
    * Function called when GooglePhoto is requested to be closed.
    */
   onClose: () => void;
   /**
    * Function called when the index of the displayed image is changing.
    */
-  onChangeIndex: (index: number) => void;
+  // onChangeIndex?: (index: number) => void;
 }
 
 export const GooglePhoto = ({
   open,
   src,
-  srcIndex,
+  // srcIndex: srcIndexProp = 0,
   fullscreen,
   keyboardNavigation = true,
   closeOnEsc = true,
   mouseIdleTimeout = 5000,
+  animationDuration = 250,
   onClose,
-  onChangeIndex,
-}: GooglePhotoProps) => {
+}: // onChangeIndex = () => null,
+GooglePhotoProps) => {
   const refContainer = useRef<HTMLDivElement | null>(null);
   const refTimeoutMouseIdle = useRef<NodeJS.Timeout | null>(null);
   const [showPortal, setShowPortal] = useState(open);
@@ -111,6 +125,7 @@ export const GooglePhoto = ({
     height: isBrowser ? window.innerHeight : 0,
   });
   const [mouseIdle, setMouseIdle] = useState(false);
+  const [srcIndex, setSrcIndex] = useState(0);
 
   // Lazily create the ref instance
   // https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily
@@ -120,7 +135,6 @@ export const GooglePhoto = ({
 
   const handleOpen = () => {
     noScroll.on();
-    document.addEventListener('keydown', handleKeydown);
     window.addEventListener('resize', handleWindowResize);
     document.querySelector('*')!.addEventListener('mousemove', handleMousemove);
     if (refContainer.current && !document.body.contains(refContainer.current)) {
@@ -133,16 +147,31 @@ export const GooglePhoto = ({
   };
 
   const handleClose = () => {
-    document.removeEventListener('keydown', handleKeydown);
     window.removeEventListener('resize', handleWindowResize);
     document
       .querySelector('*')!
       .removeEventListener('mousemove', handleMousemove);
+    if (refContainer.current && document.body.contains(refContainer.current)) {
+      document.body.removeChild(refContainer.current);
+    }
     if (screenfull.isEnabled) {
       screenfull.off('change', handleScreenfullChange);
     }
     noScroll.off();
   };
+
+  const handleKeydown = (e: KeyboardEvent) => {
+    if (e.keyCode === keycodes.left && keyboardNavigation) {
+      handleChangeIndex(Direction.Prev);
+    } else if (e.keyCode === keycodes.right && keyboardNavigation) {
+      handleChangeIndex(Direction.Next);
+    } else if (e.keyCode === keycodes.esc && closeOnEsc) {
+      handleClose();
+      onClose();
+    }
+  };
+
+  useEventListener(open, 'keydown', handleKeydown, document);
 
   useEffect(() => {
     // When the modal is rendered first time we want to block the scroll
@@ -156,6 +185,10 @@ export const GooglePhoto = ({
       }
     };
   }, []);
+
+  // useEffect(() => {
+  //   setSrcIndex(srcIndexProp);
+  // }, [srcIndexProp]);
 
   useEffect(() => {
     // If the open prop is changing, we need to open the modal
@@ -175,18 +208,6 @@ export const GooglePhoto = ({
     setWindowSizes({ width: window.innerWidth, height: window.innerHeight });
   };
 
-  const handleKeydown = (e: KeyboardEvent) => {
-    console.log(e.keyCode);
-    if (e.keyCode === keycodes.left && keyboardNavigation) {
-      handleClickPrev();
-    } else if (e.keyCode === keycodes.right && keyboardNavigation) {
-      handleClickNext();
-    } else if (e.keyCode === keycodes.esc && closeOnEsc) {
-      handleClose();
-      onClose();
-    }
-  };
-
   const handleMousemove = () => {
     // Hide the actions buttons when move do not move for x seconds
     if (refTimeoutMouseIdle.current) {
@@ -200,20 +221,33 @@ export const GooglePhoto = ({
     }, mouseIdleTimeout);
   };
 
-  const handleClickPrev = () => {
-    if (srcIndex !== 0) {
-      onChangeIndex(srcIndex - 1);
-    }
-  };
-
-  const handleClickNext = () => {
-    if (src[srcIndex + 1]) {
-      onChangeIndex(srcIndex + 1);
+  const handleChangeIndex = (direction: Direction) => {
+    if (direction === Direction.Prev && srcIndex !== 0) {
+      const newIndex = srcIndex - 1;
+      console.log('newIndex', newIndex);
+      setSrcIndex(newIndex);
+      // onChangeIndex(newIndex);
+    } else if (direction === Direction.Next && src[srcIndex + 1]) {
+      const newIndex = srcIndex + 1;
+      console.log('newIndex', newIndex);
+      setSrcIndex(newIndex);
+      // onChangeIndex(newIndex);
     }
   };
 
   const handleClickCloseArrow = () => {
     onClose();
+  };
+
+  const handleAnimationEnd = () => {
+    if (!open) {
+      setShowPortal(false);
+      handleClose();
+    }
+
+    // if (onAnimationEnd) {
+    //   onAnimationEnd();
+    // }
   };
 
   const image = src[srcIndex];
@@ -255,7 +289,15 @@ export const GooglePhoto = ({
 
   return showPortal && refContainer.current
     ? ReactDom.createPortal(
-        <div className={cx(classes.overlay)}>
+        <div
+          className={cx(classes.overlay)}
+          style={{
+            animation: `${
+              open ? classes.animationIn : classes.animationOut
+            } ${animationDuration}ms`,
+          }}
+          onAnimationEnd={handleAnimationEnd}
+        >
           <div style={wrapperImageStyle}>
             {src.map((source, index) => (
               <img
@@ -273,7 +315,7 @@ export const GooglePhoto = ({
           {srcIndex !== 0 && (
             <div
               className={cx(classes.column, classes.leftColumn)}
-              onClick={handleClickPrev}
+              onClick={() => handleChangeIndex(Direction.Prev)}
             >
               <PrevArrowButton
                 className={cx(classes.arrowButton, classes.arrowButtonLeft, {
@@ -285,7 +327,7 @@ export const GooglePhoto = ({
           {src[srcIndex + 1] && (
             <div
               className={cx(classes.column, classes.rightColumn)}
-              onClick={handleClickNext}
+              onClick={() => handleChangeIndex(Direction.Next)}
             >
               <NextArrowButton
                 className={cx(classes.arrowButton, classes.arrowButtonRight, {
