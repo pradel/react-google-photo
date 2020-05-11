@@ -1,0 +1,54 @@
+---
+name: Hello world
+route: /
+---
+
+import { Playground } from 'docz';
+import { GooglePhoto } from '../src/index.tsx';
+import '../src/styles.css';
+
+# Hello world
+
+Hello, I'm a mdx file!
+
+<Playground>
+  {() => {
+    // https://unsplash.com/collections/589374/textures
+    const images = [
+      {
+        src:
+          'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1509641498745-13c26fd1ed89?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 666,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1491146179969-d674118945ff?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 844,
+      },
+    ];
+    const [open, setOpen] = React.useState(false);
+    const [index, setIndex] = React.useState(0);
+    return (
+      <>
+        <button className="button" onClick={() => setOpen(true)}>
+          Open centered modal
+        </button>
+        <GooglePhoto
+          open={open}
+          src={images}
+          srcIndex={index}
+          onChangeIndex={(newIndex) => setIndex(newIndex)}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  }}
+</Playground>

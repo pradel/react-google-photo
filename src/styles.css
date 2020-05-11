@@ -1,4 +1,4 @@
-.overlay {
+.react-google-photo-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -6,9 +6,10 @@
   left: 0;
   background-color: black;
   overflow: hidden;
+  z-index: 1;
 }
 
-.column {
+.react-google-photo-column {
   position: absolute;
   width: 30%;
   top: 0;
@@ -17,17 +18,17 @@
   transition: opacity 200ms ease;
   opacity: 0;
 }
-.column:hover {
+.react-google-photo-column:hover {
   opacity: 1;
 }
-.leftColumn {
+.react-google-photo-left-column {
   left: 0;
 }
-.rightColumn {
+.react-google-photo-right-column {
   right: 0;
 }
 
-.arrowButtonReturn {
+.react-google-photo-arrow-button-return {
   height: 48px;
   width: 48px;
   position: absolute;
@@ -41,7 +42,7 @@
   opacity: 1;
 }
 
-.arrowButton {
+.react-google-photo-arrow-button {
   background-color: rgba(66, 66, 66, 0.54);
   border-radius: 28px;
   position: absolute;
@@ -55,24 +56,24 @@
   transition: opacity 200ms ease;
   opacity: 1;
 }
-.arrowButtonHide {
+.react-google-photo-arrow-button-hide {
   opacity: 0;
 }
-.arrowButtonLeft {
+.react-google-photo-arrow-button-left {
   left: 28px;
 }
-.arrowButtonRight {
+.react-google-photo-arrow-button-right {
   right: 28px;
 }
 
-.image {
+.react-google-photo-overlay-image {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   transform: translateX(50px);
   transition: opacity 500ms ease, transform 500ms ease;
 }
-.imageOpen {
+.react-google-photo-overlay-image-open {
   visibility: initial;
   opacity: 1;
   transform: translateX(0px);

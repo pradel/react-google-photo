@@ -7,3 +7,4 @@ dist
 # Docs
 docs/.cache
 docs/public
+.docz
