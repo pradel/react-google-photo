@@ -1,6 +1,6 @@
 {
   "name": "react-google-photo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React lightbox component using the google photo style",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
@@ -19,9 +19,15 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json,css,scss}": ["prettier --write", "git add"]
+    "*.{js,ts,tsx,json,css,scss}": [
+      "prettier --write",
+      "git add"
+    ]
   },
-  "files": ["src", "lib"],
+  "files": [
+    "src",
+    "lib"
+  ],
   "repository": "https://github.com/pradel/react-google-photo.git",
   "author": "Pradel Léo <pradel.leo@gmail.com>",
   "license": "MIT",
@@ -66,8 +72,14 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["airbnb", "prettier", "prettier/react"],
-    "plugins": ["prettier"],
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
       "react/jsx-filename-extension": 0,
       "import/no-extraneous-dependencies": 0,
@@ -86,5 +98,12 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "keywords": ["react", "google", "photo", "image", "lightbox", "responsive"]
+  "keywords": [
+    "react",
+    "google",
+    "photo",
+    "image",
+    "lightbox",
+    "responsive"
+  ]
 }
