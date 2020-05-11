@@ -51,20 +51,20 @@
     "classnames": "^2.2.5",
     "no-scroll": "^2.1.1",
     "react-minimalist-portal": "^2.2.0",
-    "react-transition-group": "^2.3.1",
-    "screenfull": "^3.3.2"
+    "react-transition-group": "^4.4.1",
+    "screenfull": "^5.0.2"
   },
   "devDependencies": {
     "@types/react": "16.9.35",
     "@types/react-dom": "16.9.8",
     "husky": "4.2.5",
+    "lint-staged": "10.2.2",
+    "prettier": "2.0.5",
     "react": "16.13.1",
+    "react-docgen": "2.20.1",
     "react-dom": "16.13.1",
     "tsdx": "0.13.2",
     "tslib": "1.11.2",
-    "typescript": "3.8.3",
-    "lint-staged": "10.2.2",
-    "prettier": "2.0.5",
-    "react-docgen": "2.20.1"
+    "typescript": "3.8.3"
   }
 }

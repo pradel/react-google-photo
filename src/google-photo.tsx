@@ -5,7 +5,6 @@ import Transition from 'react-transition-group/Transition';
 import noScroll from 'no-scroll';
 import cx from 'classnames';
 import screenfull from 'screenfull';
-import cssClasses from './styles.css';
 import { CloseArrow, PrevArrowButton, NextArrowButton } from './arrow';
 
 const keycodes = {
