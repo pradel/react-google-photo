@@ -21,7 +21,7 @@ export const useEventListener = <T>(
 
   useEffect(
     () => {
-      if (!element.addEventListener) {
+      if (!element || !element.addEventListener) {
         return;
       }
 
