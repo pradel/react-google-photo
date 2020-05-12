@@ -35,25 +35,6 @@ enum Direction {
   Next,
 }
 
-interface SrcImage {
-  /**
-   * Url of the media.
-   */
-  src: string;
-  /**
-   * Height of the media.
-   */
-  height: number;
-  /**
-   * Width of the media.
-   */
-  width: number;
-  /**
-   * Alt of the media.
-   */
-  alt?: string;
-}
-
 interface GooglePhotoProps {
   /**
    * Control if GooglePhoto is open or not.
@@ -62,7 +43,24 @@ interface GooglePhotoProps {
   /**
    * An array containing valid images
    */
-  src: SrcImage[];
+  src: {
+    /**
+     * Url of the media.
+     */
+    src: string;
+    /**
+     * Height of the media.
+     */
+    height: number;
+    /**
+     * Width of the media.
+     */
+    width: number;
+    /**
+     * Alt of the media.
+     */
+    alt?: string;
+  }[];
   /**
    * Index of source to display.
    */
@@ -151,6 +149,7 @@ export const GooglePhoto = ({
       document.body.removeChild(refContainer.current);
     }
     if (screenfull.isEnabled) {
+      screenfull.exit();
       screenfull.off('change', handleScreenfullChange);
     }
     noScroll.off();

@@ -1,15 +1,159 @@
 ---
-name: Hello world
+name: react-google-photo
 route: /
 ---
 
-import { Playground } from 'docz';
+import { Props, Playground } from 'docz';
+import Gallery from 'react-photo-gallery';
 import { GooglePhoto } from '../src/index.tsx';
-import '../src/styles.css';
+import '../styles.css';
 
-# Hello world
+## react-google-photo
 
-Hello, I'm a mdx file!
+react-google-photo is a responsive lightbox React Component for displaying photos that implements the google photo style.
+
+- Responsive.
+- Keyboard navigation.
+- Easily customizable via props.
+
+## Installation
+
+With npm:
+
+```
+npm install react-google-photo --save
+```
+
+Or with yarn:
+
+```
+yarn add react-google-photo
+```
+
+## Usage
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'react-google-photo/styles.css';
+import GooglePhoto from 'react-google-photo';
+
+const App = () => {
+  const [open, setOpen] = React.useState(false);
+
+const images = [
+    {
+      src:
+        'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+      width: 1500,
+      height: 1000,
+    },
+    ...
+  ];
+
+  return (
+    <div>
+      <button onClick={this.handleOpen}>Open</button>
+      <GooglePhoto
+        open={open}
+        src={images}
+        onClose={this.handleClose}
+      />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+## Props
+
+<Props of={GooglePhoto} />
+
+## Examples
+
+> Photos from the [texture collection](https://unsplash.com/collections/589374/textures) on [Unsplash](https://unsplash.com/). The gallery is using the [react-photo-gallery](https://www.npmjs.com/package/react-photo-gallery) npm package.
+
+### Basic example
+
+<Playground>
+  {() => {
+    // https://unsplash.com/collections/589374/textures
+    const images = [
+      {
+        src:
+          'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1509641498745-13c26fd1ed89?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 666,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1491146179969-d674118945ff?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 844,
+      },
+    ];
+    const [open, setOpen] = React.useState(false);
+    return (
+      <>
+        <Gallery photos={images} onClick={() => setOpen(true)} />
+        <GooglePhoto open={open} src={images} onClose={() => setOpen(false)} />
+      </>
+    );
+  }}
+</Playground>
+
+### Fullscreen example
+
+If you want the slideshow to open in fullscreen mode, add the `fullscreen` prop.
+
+<Playground>
+  {() => {
+    // https://unsplash.com/collections/589374/textures
+    const images = [
+      {
+        src:
+          'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1509641498745-13c26fd1ed89?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 666,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1491146179969-d674118945ff?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 844,
+      },
+    ];
+    const [open, setOpen] = React.useState(false);
+    return (
+      <>
+        <Gallery photos={images} onClick={() => setOpen(true)} />
+        <GooglePhoto
+          fullscreen
+          open={open}
+          src={images}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  }}
+</Playground>
+
+### Managed state
+
+By default react-google-photo manage it's own state internally. If you want to manage the state yourself, you need to use the `srcIndex` and `onChangeIndex` props. `srcIndex` represent the index of the current image displayed, and `onChangeIndex` will be called when the user request to see the next or previous image (either with the keyboard or clicking on the arrows).
 
 <Playground>
   {() => {
@@ -38,11 +182,25 @@ Hello, I'm a mdx file!
     const [index, setIndex] = React.useState(0);
     return (
       <>
-        <button className="button" onClick={() => setOpen(true)}>
-          Open centered modal
-        </button>
-        <GooglePhoto open={open} src={images} onClose={() => setOpen(false)} />
+        <Gallery
+          photos={images}
+          onClick={(_, data) => {
+            setIndex(data.index);
+            setOpen(true);
+          }}
+        />
+        <GooglePhoto
+          open={open}
+          src={images}
+          srcIndex={index}
+          onChangeIndex={(newIndex) => setIndex(newIndex)}
+          onClose={() => setOpen(false)}
+        />
       </>
     );
   }}
 </Playground>
+
+## License
+
+MIT © [Léo Pradel](https://www.leopradel.com/)

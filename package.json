@@ -16,8 +16,7 @@
     "prepare": "tsdx build",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "prettier": "prettier --write \"**/*.{js,ts,tsx,css,scss,json,md}\"",
-    "generate-props": "node scripts/generateReactPropsTable.js src/index.js"
+    "prettier": "prettier --write \"**/*.{js,ts,tsx,css,scss,json,md}\""
   },
   "repository": "https://github.com/pradel/react-google-photo.git",
   "author": "Pradel Léo <pradel.leo@gmail.com>",
@@ -50,7 +49,7 @@
     "react-dom": ">=16"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "classnames": "^2.2.6",
     "no-scroll": "^2.1.1",
     "screenfull": "^5.0.2"
   },
@@ -64,8 +63,8 @@
     "lint-staged": "10.2.2",
     "prettier": "2.0.5",
     "react": "16.13.1",
-    "react-docgen": "2.20.1",
     "react-dom": "16.13.1",
+    "react-photo-gallery": "8.0.0",
     "tsdx": "0.13.2",
     "tslib": "1.11.2",
     "typescript": "3.8.3"
