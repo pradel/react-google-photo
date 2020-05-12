@@ -1,7 +1,10 @@
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types
-export function CloseArrow({ className, ...props }) {
+interface IconProps {
+  className?: string;
+}
+
+export function CloseArrow({ className, ...props }: IconProps) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="24px" height="24px" viewBox="0 0 24 24">
@@ -11,8 +14,7 @@ export function CloseArrow({ className, ...props }) {
   );
 }
 
-// eslint-disable-next-line react/prop-types
-export function PrevArrowButton({ className, ...props }) {
+export function PrevArrowButton({ className, ...props }: IconProps) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="36px" height="36px" viewBox="0 0 24 24">
@@ -22,8 +24,7 @@ export function PrevArrowButton({ className, ...props }) {
   );
 }
 
-// eslint-disable-next-line react/prop-types
-export function NextArrowButton({ className, ...props }) {
+export function NextArrowButton({ className, ...props }: IconProps) {
   return (
     <div className={className} {...props}>
       <svg fill="#ffffff" width="36px" height="36px" viewBox="0 0 24 24">

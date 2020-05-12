@@ -1,20 +1,10 @@
-# Logs
-logs
 *.log
-npm-debug.log*
-
-# Dependency directory
+.DS_Store
 node_modules
-
-# Optional npm cache directory
-.npm
-
-# Build
-lib
-
-# Webstorm
-.idea
+.cache
+dist
 
 # Docs
 docs/.cache
 docs/public
+.docz

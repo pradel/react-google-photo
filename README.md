@@ -5,9 +5,19 @@
 
 react-google-photo is a responsive lightbox React Component for displaying photos that implements the google photo style.
 
-## Docs and examples
+- Responsive.
+- Keyboard navigation.
+- Easily customizable via props.
 
-You can find the docs and live examples [here](https://react-google-photo.leopradel.com/).
+## Documentation
+
+📚 You can find the docs and live examples [here](https://react-google-photo.leopradel.com/).
+
+- [Getting started](https://react-google-photo.leopradel.com/)
+  - [Installation](https://react-google-photo.leopradel.com/#installation)
+  - [Usage](https://react-google-photo.leopradel.com/#usage)
+  - [Props](https://react-google-photo.leopradel.com/#props)
+  - [Licence](https://react-google-photo.leopradel.com/#license)
 
 ## Installation
 
@@ -28,65 +38,40 @@ yarn add react-google-photo
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-google-photo/styles.css';
 import GooglePhoto from 'react-google-photo';
 
+const App = () => {
+  const [open, setOpen] = React.useState(false);
+
 const images = [
-  {
-    src: 'url-of-your-image',
-    width: 749, // width of your image
-    height: 1000, // height of your image
-  },
-  {
+    {
+      src:
+        'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+      width: 1500,
+      height: 1000,
+    },
     ...
-  }
-];
+  ];
 
-export default class App extends React.Component {
-  state = {
-    index: 0,
-    open: false,
-  };
-
-  handleClickPrev = () => {
-    this.setState({ index: this.state.index - 1 });
-  };
-
-  handleClickNext = () => {
-    this.setState({ index: this.state.index + 1 });
-  };
-
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { open } = this.state;
-    return (
-      <div>
-        <button onClick={this.handleOpen}>Open</button>
-        <GooglePhoto
-          open={open}
-          src={images}
-          srcIndex={index}
-          onClickPrev={this.handleClickPrev}
-          onClickNext={this.handleClickNext}
-          onClose={this.handleClose}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <button onClick={this.handleOpen}>Open</button>
+      <GooglePhoto
+        open={open}
+        src={images}
+        onClose={this.handleClose}
+      />
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
-## Options
+## Props
 
-You can find the options [here](https://react-google-photo.leopradel.com/#options).
+Check the documentation: https://react-google-photo.leopradel.com/#props.
 
 ## License
 
