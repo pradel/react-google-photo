@@ -108,8 +108,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
         <GooglePhoto open={open} src={images} onClose={() => setOpen(false)} />
       </>
     );
-}}
-
+  }}
 </Playground>
 
 ### Fullscreen example
@@ -199,6 +198,76 @@ By default react-google-photo manage it's own state internally. If you want to m
           src={images}
           srcIndex={index}
           onChangeIndex={(newIndex) => setIndex(newIndex)}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  }}
+</Playground>
+
+### Custom animation
+
+import './examples/custom-animation.css';
+
+If you want to change the default animation, you can do so by creating your own css animation. For example if you add the following css to your app you will get the following result:
+
+```css
+/* examples/custom-animation.css */
+@keyframes customEnterAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes customLeaveAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+```
+
+<Playground>
+  {() => {
+    // import './examples/custom-animation.css';
+    const images = [
+      {
+        src:
+          'https://images.unsplash.com/photo-1509420316987-d27b02f81864?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1509641498745-13c26fd1ed89?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 666,
+        height: 1000,
+      },
+      {
+        src:
+          'https://images.unsplash.com/photo-1491146179969-d674118945ff?dpr=1&auto=format&fit=crop&w=1500&q=80&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+        width: 1500,
+        height: 844,
+      },
+    ];
+    const [open, setOpen] = React.useState(false);
+    const galleryImages = cloneDeep(images);
+    return (
+      <>
+        <Gallery photos={galleryImages} onClick={() => setOpen(true)} />
+        <GooglePhoto
+          open={open}
+          src={images}
+          classNames={{
+            animationIn: 'customEnterAnimation',
+            animationOut: 'customLeaveAnimation',
+          }}
+          animationDuration={500}
           onClose={() => setOpen(false)}
         />
       </>

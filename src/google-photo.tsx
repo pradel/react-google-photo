@@ -91,6 +91,15 @@ interface GooglePhotoProps {
    */
   animationDuration?: number;
   /**
+   * An object containing classNames to style the lightbox.
+   */
+  classNames?: {
+    overlay?: string;
+    image?: string;
+    animationIn?: string;
+    animationOut?: string;
+  };
+  /**
    * Function called when GooglePhoto is requested to be closed.
    */
   onClose: () => void;
@@ -109,6 +118,7 @@ export const GooglePhoto = ({
   closeOnEsc = true,
   mouseIdleTimeout = 5000,
   animationDuration = 250,
+  classNames,
   onClose,
   onChangeIndex,
 }: GooglePhotoProps) => {
@@ -293,10 +303,12 @@ export const GooglePhoto = ({
   return showPortal && refContainer.current
     ? ReactDom.createPortal(
         <div
-          className={cx(classes.overlay)}
+          className={cx(classes.overlay, classNames?.overlay)}
           style={{
             animation: `${
-              open ? classes.animationIn : classes.animationOut
+              open
+                ? classNames?.animationIn ?? classes.animationIn
+                : classNames?.animationOut ?? classes.animationOut
             } ${animationDuration}ms`,
           }}
           onAnimationEnd={handleAnimationEnd}
@@ -309,7 +321,7 @@ export const GooglePhoto = ({
                 alt={source.alt}
                 width={wrapperImageStyle.width}
                 height={wrapperImageStyle.height}
-                className={cx(classes.image, {
+                className={cx(classes.image, classNames?.image, {
                   [classes.imageOpen]: index === srcIndex,
                 })}
               />
