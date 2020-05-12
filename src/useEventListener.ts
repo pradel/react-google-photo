@@ -21,6 +21,10 @@ export const useEventListener = <T>(
 
   useEffect(
     () => {
+      if (!element.addEventListener) {
+        return;
+      }
+
       // Create event listener that calls handler function stored in ref
       const eventListener = (event: T) => savedHandler.current!(event);
 

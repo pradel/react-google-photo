@@ -66,7 +66,7 @@ interface GooglePhotoProps {
   /**
    * Index of source to display.
    */
-  // srcIndex?: number;
+  srcIndex?: number;
   /**
    * Should open on fullscreen mode.
    * Default to false.
@@ -99,21 +99,21 @@ interface GooglePhotoProps {
   /**
    * Function called when the index of the displayed image is changing.
    */
-  // onChangeIndex?: (index: number) => void;
+  onChangeIndex?: (index: number) => void;
 }
 
 export const GooglePhoto = ({
   open,
   src,
-  // srcIndex: srcIndexProp = 0,
+  srcIndex: srcIndexProp = 0,
   fullscreen,
   keyboardNavigation = true,
   closeOnEsc = true,
   mouseIdleTimeout = 5000,
   animationDuration = 250,
   onClose,
-}: // onChangeIndex = () => null,
-GooglePhotoProps) => {
+  onChangeIndex,
+}: GooglePhotoProps) => {
   const refContainer = useRef<HTMLDivElement | null>(null);
   const refTimeoutMouseIdle = useRef<NodeJS.Timeout | null>(null);
   const [showPortal, setShowPortal] = useState(open);
@@ -125,7 +125,7 @@ GooglePhotoProps) => {
     height: isBrowser ? window.innerHeight : 0,
   });
   const [mouseIdle, setMouseIdle] = useState(false);
-  const [srcIndex, setSrcIndex] = useState(0);
+  const [srcIndex, setSrcIndex] = useState(srcIndexProp);
 
   // Lazily create the ref instance
   // https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily
@@ -136,7 +136,6 @@ GooglePhotoProps) => {
   const handleOpen = () => {
     noScroll.on();
     window.addEventListener('resize', handleWindowResize);
-    document.querySelector('*')!.addEventListener('mousemove', handleMousemove);
     if (refContainer.current && !document.body.contains(refContainer.current)) {
       document.body.appendChild(refContainer.current);
     }
@@ -148,9 +147,6 @@ GooglePhotoProps) => {
 
   const handleClose = () => {
     window.removeEventListener('resize', handleWindowResize);
-    document
-      .querySelector('*')!
-      .removeEventListener('mousemove', handleMousemove);
     if (refContainer.current && document.body.contains(refContainer.current)) {
       document.body.removeChild(refContainer.current);
     }
@@ -166,12 +162,41 @@ GooglePhotoProps) => {
     } else if (e.keyCode === keycodes.right && keyboardNavigation) {
       handleChangeIndex(Direction.Next);
     } else if (e.keyCode === keycodes.esc && closeOnEsc) {
-      handleClose();
       onClose();
     }
   };
 
-  useEventListener(open, 'keydown', handleKeydown, document);
+  useEventListener(
+    open,
+    'keydown',
+    handleKeydown,
+    isBrowser ? document : undefined
+  );
+
+  const handleMousemove = () => {
+    // Hide the actions buttons when move do not move for x seconds
+    if (refTimeoutMouseIdle.current) {
+      clearTimeout(refTimeoutMouseIdle.current);
+    }
+    if (mouseIdle === true) {
+      setMouseIdle(false);
+    }
+    refTimeoutMouseIdle.current = setTimeout(() => {
+      setMouseIdle(true);
+    }, mouseIdleTimeout);
+  };
+
+  useEventListener(
+    open,
+    'mousemove',
+    handleMousemove,
+    isBrowser ? document.querySelector('*')! : undefined
+  );
+
+  // We listen to the srcIndexProp to update the internal state if the user manage the component
+  useEffect(() => {
+    setSrcIndex(srcIndexProp);
+  }, [srcIndexProp]);
 
   useEffect(() => {
     // When the modal is rendered first time we want to block the scroll
@@ -185,10 +210,6 @@ GooglePhotoProps) => {
       }
     };
   }, []);
-
-  // useEffect(() => {
-  //   setSrcIndex(srcIndexProp);
-  // }, [srcIndexProp]);
 
   useEffect(() => {
     // If the open prop is changing, we need to open the modal
@@ -208,30 +229,13 @@ GooglePhotoProps) => {
     setWindowSizes({ width: window.innerWidth, height: window.innerHeight });
   };
 
-  const handleMousemove = () => {
-    // Hide the actions buttons when move do not move for x seconds
-    if (refTimeoutMouseIdle.current) {
-      clearTimeout(refTimeoutMouseIdle.current);
-    }
-    if (mouseIdle === true) {
-      setMouseIdle(false);
-    }
-    refTimeoutMouseIdle.current = setTimeout(() => {
-      setMouseIdle(true);
-    }, mouseIdleTimeout);
-  };
-
   const handleChangeIndex = (direction: Direction) => {
     if (direction === Direction.Prev && srcIndex !== 0) {
       const newIndex = srcIndex - 1;
-      console.log('newIndex', newIndex);
-      setSrcIndex(newIndex);
-      // onChangeIndex(newIndex);
+      onChangeIndex ? onChangeIndex(newIndex) : setSrcIndex(newIndex);
     } else if (direction === Direction.Next && src[srcIndex + 1]) {
       const newIndex = srcIndex + 1;
-      console.log('newIndex', newIndex);
-      setSrcIndex(newIndex);
-      // onChangeIndex(newIndex);
+      onChangeIndex ? onChangeIndex(newIndex) : setSrcIndex(newIndex);
     }
   };
 
