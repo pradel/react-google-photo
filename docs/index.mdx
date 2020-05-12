@@ -5,6 +5,7 @@ route: /
 
 import { Props, Playground } from 'docz';
 import Gallery from 'react-photo-gallery';
+import cloneDeep from 'lodash.clonedeep';
 import { GooglePhoto } from '../src/index.tsx';
 import '../styles.css';
 
@@ -100,13 +101,15 @@ ReactDOM.render(<App />, document.getElementById('app'));
       },
     ];
     const [open, setOpen] = React.useState(false);
+    const galleryImages = cloneDeep(images);
     return (
       <>
-        <Gallery photos={images} onClick={() => setOpen(true)} />
+        <Gallery photos={galleryImages} onClick={() => setOpen(true)} />
         <GooglePhoto open={open} src={images} onClose={() => setOpen(false)} />
       </>
     );
-  }}
+}}
+
 </Playground>
 
 ### Fullscreen example
@@ -137,9 +140,10 @@ If you want the slideshow to open in fullscreen mode, add the `fullscreen` prop.
       },
     ];
     const [open, setOpen] = React.useState(false);
+    const galleryImages = cloneDeep(images);
     return (
       <>
-        <Gallery photos={images} onClick={() => setOpen(true)} />
+        <Gallery photos={galleryImages} onClick={() => setOpen(true)} />
         <GooglePhoto
           fullscreen
           open={open}
@@ -180,10 +184,11 @@ By default react-google-photo manage it's own state internally. If you want to m
     ];
     const [open, setOpen] = React.useState(false);
     const [index, setIndex] = React.useState(0);
+    const galleryImages = cloneDeep(images);
     return (
       <>
         <Gallery
-          photos={images}
+          photos={galleryImages}
           onClick={(_, data) => {
             setIndex(data.index);
             setOpen(true);
