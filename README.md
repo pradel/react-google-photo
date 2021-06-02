@@ -61,7 +61,7 @@ const images = [
       <GooglePhoto
         open={open}
         src={images}
-        onClose={this.handleClose}
+        onClose={() => setOpen(false)}
       />
     </div>
   );
